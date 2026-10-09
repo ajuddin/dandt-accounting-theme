@@ -1,0 +1,46 @@
+<?php
+/**
+ * Site footer.
+ *
+ * @package dandt-theme
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+$dandt = dandt_business_details();
+?>
+</main>
+
+<footer class="dandt-footer">
+    <div class="dandt-container">
+        <div class="dandt-footer-grid">
+            <div class="dandt-footer-col">
+                <h3><?php bloginfo( 'name' ); ?></h3>
+                <p><?php esc_html_e( 'Chartered accountancy services for businesses across Essex: company accounts, VAT, payroll, self-assessment and bookkeeping.', 'dandt-theme' ); ?></p>
+            </div>
+
+            <div class="dandt-footer-col">
+                <h3><?php esc_html_e( 'Navigate', 'dandt-theme' ); ?></h3>
+                <p><a href="<?php echo esc_url( home_url( '/services/' ) ); ?>"><?php esc_html_e( 'Services', 'dandt-theme' ); ?></a></p>
+                <p><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><?php esc_html_e( 'About', 'dandt-theme' ); ?></a></p>
+                <p><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Contact', 'dandt-theme' ); ?></a></p>
+            </div>
+
+            <div class="dandt-footer-col">
+                <h3><?php esc_html_e( 'Contact', 'dandt-theme' ); ?></h3>
+                <p><a href="tel:<?php echo esc_attr( $dandt['phone_href'] ); ?>"><?php echo esc_html( $dandt['phone'] ); ?></a></p>
+                <p><a href="mailto:<?php echo esc_attr( $dandt['email'] ); ?>"><?php echo esc_html( $dandt['email'] ); ?></a></p>
+                <p><?php echo esc_html( implode( ', ', $dandt['address_lines'] ) ); ?></p>
+            </div>
+        </div>
+
+        <div class="dandt-footer-bottom">
+            <span>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'All rights reserved.', 'dandt-theme' ); ?></span>
+            <span><?php echo esc_html( $dandt['hours'] ); ?></span>
+        </div>
+    </div>
+</footer>
+
+<?php wp_footer(); ?>
+</body>
+</html>

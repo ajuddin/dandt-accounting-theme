@@ -1,0 +1,593 @@
+/*
+Theme Name: D&T Accounting
+Theme URI: https://dandtaccounting.co.uk
+Author: D&T Accounting
+Description: Classic WordPress theme for D&T Accounting, a chartered accountancy firm in Essex. Plain PHP, no build step, hand-written CSS/JS.
+Version: 1.0.0
+Text Domain: dandt-theme
+*/
+
+/* ==========================================================================
+   Design tokens
+
+   Design read: trust-first professional-services site for local business
+   owners choosing an accountant. Calm, credible, modern (not sterile).
+   Dials: VARIANCE 5 / MOTION 3 / DENSITY 4.
+
+   Shape lock: buttons and pills are full-radius; cards and inputs are 14px.
+   Accent lock: emerald is the only accent colour, used identically in both
+   themes below. Do not introduce a second accent anywhere in the theme.
+   ========================================================================== */
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 500 700;
+    font-display: swap;
+    src: url('assets/fonts/outfit-variable.woff2') format('woff2-variations'),
+         url('assets/fonts/outfit-variable.woff2') format('woff2');
+}
+
+:root {
+    /* Light (default) */
+    --ink: #12181f;
+    --ink-soft: #4b5563;
+    --paper: #f5f6f4;
+    --paper-dim: #eceeea;
+    --surface: #ffffff;
+    --border: #dadfd8;
+    --accent: #0e7c5a;
+    --accent-ink: #0b5e45;
+    --accent-on: #ffffff;
+
+    --font-display: 'Outfit', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --font-body: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+    --radius-card: 14px;
+    --radius-pill: 999px;
+    --shadow-card: 0 1px 2px rgb(18 24 31 / 0.05), 0 12px 32px -16px rgb(18 24 31 / 0.12);
+    --container: 1180px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --ink: #f1f4f2;
+        --ink-soft: #aab4ad;
+        --paper: #141718;
+        --paper-dim: #1b1f20;
+        --surface: #191d1e;
+        --border: #2a2f30;
+        --accent: #22a378;
+        --accent-ink: #7fe0bd;
+        --accent-on: #0b1210;
+        --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px -16px rgb(0 0 0 / 0.6);
+    }
+}
+
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+img, svg { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+ul { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3, h4, p { margin: 0; }
+
+.dandt-visually-hidden {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 1rem;
+    z-index: 100;
+    background: var(--surface);
+    color: var(--ink);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-card);
+}
+.skip-link:focus { left: 1rem; }
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+
+.dandt-container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.dandt-section { padding: 5rem 0; }
+.dandt-section-tight { padding: 3.5rem 0; }
+
+@media (max-width: 768px) {
+    .dandt-section { padding: 3.5rem 0; }
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+.dandt-h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    font-size: clamp(2rem, 1.1rem + 3.4vw, 3.25rem);
+}
+
+.dandt-h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    font-size: clamp(1.6rem, 1.1rem + 1.8vw, 2.25rem);
+}
+
+.dandt-h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    font-size: 1.25rem;
+}
+
+.dandt-lede {
+    color: var(--ink-soft);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    max-width: 42ch;
+}
+
+.dandt-body { color: var(--ink-soft); max-width: 65ch; }
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.dandt-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+.dandt-btn:active { transform: translateY(1px) scale(0.98); }
+
+.dandt-btn-primary {
+    background: var(--accent);
+    color: var(--accent-on);
+}
+.dandt-btn-primary:hover { background: var(--accent-ink); }
+
+.dandt-btn-outline {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--ink);
+}
+.dandt-btn-outline:hover { border-color: var(--accent); color: var(--accent-ink); }
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.dandt-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+
+.dandt-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    height: 72px;
+}
+
+.dandt-logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.dandt-logo-mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: var(--accent-on);
+    display: grid;
+    place-items: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.dandt-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.dandt-nav-links {
+    display: flex;
+    gap: 1.75rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+.dandt-nav-links a {
+    color: var(--ink-soft);
+    transition: color 0.15s ease;
+}
+.dandt-nav-links a:hover,
+.dandt-nav-links a[aria-current="page"] { color: var(--ink); }
+
+.dandt-nav-call {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.dandt-nav-call svg { width: 16px; height: 16px; }
+
+.dandt-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    color: var(--ink);
+}
+.dandt-nav-toggle svg { width: 22px; height: 22px; }
+.dandt-nav-toggle .dandt-icon-close { display: none; }
+.dandt-header.is-open .dandt-nav-toggle .dandt-icon-open { display: none; }
+.dandt-header.is-open .dandt-nav-toggle .dandt-icon-close { display: block; }
+
+@media (max-width: 860px) {
+    .dandt-nav-links, .dandt-nav-call { display: none; }
+    .dandt-nav-toggle { display: inline-flex; }
+    .dandt-header.is-open .dandt-nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        padding: 1.25rem 1.5rem 1.5rem;
+        gap: 1.1rem;
+    }
+    .dandt-header.is-open .dandt-nav-call {
+        display: inline-flex;
+        margin: 0 1.5rem 1.25rem;
+    }
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.dandt-hero {
+    padding: 3.5rem 0 4.5rem;
+}
+.dandt-hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3rem;
+    align-items: center;
+}
+.dandt-hero-copy > * + * { margin-top: 1.25rem; }
+.dandt-hero-ctas {
+    display: flex;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+}
+.dandt-hero-media {
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    aspect-ratio: 4 / 5;
+}
+.dandt-hero-media img { width: 100%; height: 100%; object-fit: cover; }
+
+@media (max-width: 900px) {
+    .dandt-hero-grid { grid-template-columns: 1fr; }
+    .dandt-hero-media { aspect-ratio: 16 / 10; order: -1; }
+}
+
+/* ==========================================================================
+   Trust strip
+   ========================================================================== */
+
+.dandt-trust {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--paper-dim);
+}
+.dandt-trust-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2.5rem;
+    padding: 1.75rem 0;
+    justify-content: space-between;
+    align-items: center;
+}
+.dandt-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.dandt-trust-item svg { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; }
+
+/* ==========================================================================
+   Section heads
+   ========================================================================== */
+
+.dandt-section-head { max-width: 46ch; margin-bottom: 2.75rem; }
+.dandt-section-head > * + * { margin-top: 0.85rem; }
+
+/* ==========================================================================
+   Services grid (4 items: 1 featured + 3 standard, not 3 equal cards)
+   ========================================================================== */
+
+.dandt-services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+.dandt-service-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 1.75rem;
+}
+.dandt-service-card > * + * { margin-top: 0.75rem; }
+.dandt-service-card.is-featured {
+    grid-column: span 2;
+    grid-row: span 2;
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2.25rem;
+}
+.dandt-service-card.is-featured .dandt-body { color: color-mix(in srgb, var(--paper) 72%, transparent); }
+.dandt-service-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--accent);
+    display: grid;
+    place-items: center;
+}
+.dandt-service-card.is-featured .dandt-service-icon {
+    background: color-mix(in srgb, var(--accent) 24%, transparent);
+    color: var(--accent-ink);
+}
+.dandt-service-icon svg { width: 22px; height: 22px; }
+
+@media (max-width: 900px) {
+    .dandt-services-grid { grid-template-columns: 1fr 1fr; }
+    .dandt-service-card.is-featured { grid-column: span 2; grid-row: auto; }
+}
+@media (max-width: 620px) {
+    .dandt-services-grid { grid-template-columns: 1fr; }
+    .dandt-service-card.is-featured { grid-column: span 1; }
+}
+
+/* ==========================================================================
+   Why choose us - alternating feature rows (max 2 in a row per taste rules)
+   ========================================================================== */
+
+.dandt-feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding: 3rem 0;
+}
+.dandt-feature-row:not(:last-child) { border-bottom: 1px solid var(--border); }
+.dandt-feature-row.is-reversed .dandt-feature-media { order: 2; }
+.dandt-feature-media {
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+}
+.dandt-feature-media img { width: 100%; height: 100%; object-fit: cover; }
+.dandt-feature-copy > * + * { margin-top: 0.85rem; }
+.dandt-feature-list { margin-top: 1rem; }
+.dandt-feature-list li {
+    display: flex;
+    gap: 0.6rem;
+    padding: 0.4rem 0;
+    color: var(--ink-soft);
+}
+.dandt-feature-list svg { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; margin-top: 0.15rem; }
+
+@media (max-width: 860px) {
+    .dandt-feature-row { grid-template-columns: 1fr; }
+    .dandt-feature-row.is-reversed .dandt-feature-media { order: 0; }
+}
+
+/* ==========================================================================
+   CTA band
+   ========================================================================== */
+
+.dandt-cta-band {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: var(--radius-card);
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+.dandt-cta-band .dandt-body { color: color-mix(in srgb, var(--paper) 72%, transparent); }
+.dandt-cta-band .dandt-btn-outline { border-color: color-mix(in srgb, var(--paper) 30%, transparent); color: var(--paper); }
+.dandt-cta-band .dandt-btn-outline:hover { border-color: var(--accent); color: var(--accent-ink); }
+
+/* ==========================================================================
+   Profile card (About page - accountant profile)
+   ========================================================================== */
+
+.dandt-profile {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 2.5rem;
+    align-items: start;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 2rem;
+}
+.dandt-profile-photo {
+    border-radius: 12px;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: var(--paper-dim);
+}
+.dandt-profile-photo img { width: 100%; height: 100%; object-fit: cover; }
+.dandt-profile-copy > * + * { margin-top: 0.75rem; }
+.dandt-profile-role { color: var(--accent-ink); font-weight: 600; font-size: 0.9rem; }
+
+@media (max-width: 700px) {
+    .dandt-profile { grid-template-columns: 1fr; }
+    .dandt-profile-photo { max-width: 220px; }
+}
+
+/* ==========================================================================
+   Contact
+   ========================================================================== */
+
+.dandt-contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+.dandt-contact-info > * + * { margin-top: 1.75rem; }
+.dandt-contact-item { display: flex; gap: 0.85rem; align-items: flex-start; }
+.dandt-contact-item svg { width: 20px; height: 20px; color: var(--accent); margin-top: 0.15rem; flex-shrink: 0; }
+.dandt-contact-item a { color: var(--ink); font-weight: 500; }
+.dandt-contact-item a:hover { color: var(--accent-ink); }
+
+.dandt-form { display: grid; gap: 1.1rem; }
+.dandt-field { display: grid; gap: 0.4rem; }
+.dandt-field label { font-size: 0.9rem; font-weight: 600; }
+.dandt-field input,
+.dandt-field textarea {
+    font: inherit;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--ink);
+}
+.dandt-field input:focus,
+.dandt-field textarea:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+}
+.dandt-field-error { color: #b42318; font-size: 0.85rem; }
+.dandt-form-status { padding: 0.9rem 1rem; border-radius: 10px; font-size: 0.9rem; }
+.dandt-form-status.is-success { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent-ink); }
+.dandt-form-status.is-error { background: color-mix(in srgb, #b42318 12%, transparent); color: #b42318; }
+.dandt-honeypot { position: absolute; left: -9999px; }
+
+@media (max-width: 860px) {
+    .dandt-contact-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.dandt-footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 0 2rem;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+}
+.dandt-footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+}
+.dandt-footer-col > * + * { margin-top: 0.65rem; }
+.dandt-footer-col h3 { font-size: 0.85rem; color: var(--ink); margin-bottom: 0.75rem; }
+.dandt-footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-top: 1.5rem;
+}
+
+@media (max-width: 700px) {
+    .dandt-footer-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   Scroll reveal (IntersectionObserver-driven, see assets/js/main.js)
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+    .dandt-reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .dandt-reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   404
+   ========================================================================== */
+
+.dandt-404 {
+    text-align: center;
+    padding: 6rem 0;
+}
+.dandt-404 > * + * { margin-top: 1.25rem; }
