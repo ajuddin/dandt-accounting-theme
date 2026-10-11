@@ -123,7 +123,7 @@ get_header();
         <div class="dandt-cta-band dandt-reveal">
             <div>
                 <h2 class="dandt-h2"><?php esc_html_e( 'Ready to simplify your accounts?', 'dandt-theme' ); ?></h2>
-                <p class="dandt-body"><?php esc_html_e( 'Tell us a little about your business and we will get back to you within one working day.', 'dandt-theme' ); ?></p>
+                <p class="dandt-body"><?php esc_html_e( 'Tell us a little about your business and we will get back to you as soon as we can.', 'dandt-theme' ); ?></p>
             </div>
             <a class="dandt-btn dandt-btn-primary" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Get in Touch', 'dandt-theme' ); ?></a>
         </div>

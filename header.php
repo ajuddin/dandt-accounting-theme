@@ -64,13 +64,18 @@ $dandt = dandt_business_details();
             <ul class="dandt-nav-links">
                 <?php
                 $nav_items = array(
-                    'home'     => array( __( 'Home', 'dandt-theme' ), home_url( '/' ) ),
-                    'services' => array( __( 'Services', 'dandt-theme' ), home_url( '/services/' ) ),
-                    'about'    => array( __( 'About', 'dandt-theme' ), home_url( '/about/' ) ),
-                    'contact'  => array( __( 'Contact', 'dandt-theme' ), home_url( '/contact/' ) ),
+                    'home'          => array( __( 'Home', 'dandt-theme' ), home_url( '/' ) ),
+                    'services'      => array( __( 'Services', 'dandt-theme' ), home_url( '/services/' ) ),
+                    'who-we-help'   => array( __( 'Who We Help', 'dandt-theme' ), home_url( '/who-we-help/' ) ),
+                    'pricing'       => array( __( 'Pricing', 'dandt-theme' ), home_url( '/pricing/' ) ),
+                    'resources'     => array( __( 'Resources', 'dandt-theme' ), home_url( '/resources/' ) ),
+                    'about-us'      => array( __( 'About', 'dandt-theme' ), home_url( '/about-us/' ) ),
                 );
                 foreach ( $nav_items as $slug => $item ) :
-                    $is_current = is_page( $slug ) || ( 'home' === $slug && is_front_page() );
+                    $is_current = is_page( $slug ) || ( 'home' === $slug && is_front_page() )
+                        || ( 'services' === $slug && ( is_singular( 'service' ) || is_post_type_archive( 'service' ) ) )
+                        || ( 'who-we-help' === $slug && ( is_singular( 'location' ) || is_post_type_archive( 'location' ) ) )
+                        || ( 'resources' === $slug && ( is_singular( 'post' ) || is_home() ) );
                     ?>
                     <li>
                         <a href="<?php echo esc_url( $item[1] ); ?>" <?php echo $is_current ? 'aria-current="page"' : ''; ?>>
@@ -85,6 +90,10 @@ $dandt = dandt_business_details();
                 <?php echo esc_html( $dandt['phone'] ); ?>
             </a>
 
+            <a class="dandt-btn dandt-btn-primary dandt-nav-contact" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">
+                <?php esc_html_e( 'Contact', 'dandt-theme' ); ?>
+            </a>
+
             <button class="dandt-nav-toggle" id="dandt-nav-toggle" aria-expanded="false" aria-controls="dandt-header">
                 <span class="dandt-visually-hidden"><?php esc_html_e( 'Menu', 'dandt-theme' ); ?></span>
                 <?php dandt_icon( 'menu', 'dandt-icon-open' ); ?>
@@ -93,5 +102,17 @@ $dandt = dandt_business_details();
         </nav>
     </div>
 </header>
+
+<?php
+/*
+ * Sticky mobile CTA, per the brief. Hidden on desktop (see .dandt-mobile-cta
+ * in style.css); sits above the safe area on phones so it never covers
+ * content or gets clipped by the home-indicator on iOS.
+ */
+?>
+<a class="dandt-mobile-cta" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">
+    <?php dandt_icon( 'phone' ); ?>
+    <?php esc_html_e( 'Contact D&T Accounting', 'dandt-theme' ); ?>
+</a>
 
 <main id="main">

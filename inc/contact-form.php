@@ -32,6 +32,10 @@ function dandt_handle_contact_form() {
     $phone   = sanitize_text_field( wp_unslash( $_POST['phone'] ?? '' ) );
     $message = sanitize_textarea_field( wp_unslash( $_POST['message'] ?? '' ) );
 
+    $trading_status = sanitize_key( wp_unslash( $_POST['trading_status'] ?? '' ) );
+    $turnover_band  = sanitize_key( wp_unslash( $_POST['turnover_band'] ?? '' ) );
+    $contact_method = sanitize_key( wp_unslash( $_POST['contact_method'] ?? 'either' ) );
+
     $redirect = wp_get_referer() ?: home_url( '/contact/' );
 
     if ( '' === $name || ! is_email( $email ) || '' === $message ) {
@@ -41,10 +45,32 @@ function dandt_handle_contact_form() {
 
     $details = dandt_business_details();
 
+    $trading_status_labels = array(
+        'not-yet-trading' => 'Not yet trading',
+        'sole-trader'     => 'Sole trader',
+        'limited-company' => 'Limited company',
+        'partnership'     => 'Partnership',
+    );
+    $turnover_labels = array(
+        'under-20k' => 'Under £20,000',
+        '20k-50k'   => '£20,000 - £50,000',
+        '50k-90k'   => '£50,000 - £90,000',
+        'over-90k'  => 'Over £90,000 (VAT threshold)',
+        'not-sure'  => 'Not sure yet',
+    );
+    $contact_method_labels = array(
+        'either' => 'Either',
+        'phone'  => 'Phone',
+        'email'  => 'Email',
+    );
+
     $body  = sprintf( "New enquiry from the website contact form.\n\n" );
     $body .= sprintf( "Name: %s\n", $name );
     $body .= sprintf( "Email: %s\n", $email );
     $body .= sprintf( "Phone: %s\n", $phone ?: '-' );
+    $body .= sprintf( "Trading status: %s\n", $trading_status_labels[ $trading_status ] ?? '-' );
+    $body .= sprintf( "Approx. turnover: %s\n", $turnover_labels[ $turnover_band ] ?? '-' );
+    $body .= sprintf( "Preferred contact method: %s\n", $contact_method_labels[ $contact_method ] ?? 'Either' );
     $body .= sprintf( "\nMessage:\n%s\n", $message );
 
     $sent = wp_mail(

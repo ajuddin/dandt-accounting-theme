@@ -29,7 +29,7 @@ function dandt_register_block_patterns() {
                 '<!-- wp:group {"layout":{"type":"constrained"}} -->' .
                 '<div class="wp-block-group">' .
                     '<!-- wp:heading {"level":2} --><h2 class="wp-block-heading">' . esc_html__( 'Ready to talk?', 'dandt-theme' ) . '</h2><!-- /wp:heading -->' .
-                    '<!-- wp:paragraph --><p>' . esc_html__( 'Tell us about your business and we will get back to you within one working day.', 'dandt-theme' ) . '</p><!-- /wp:paragraph -->' .
+                    '<!-- wp:paragraph --><p>' . esc_html__( 'Tell us about your business and we will get back to you as soon as we can.', 'dandt-theme' ) . '</p><!-- /wp:paragraph -->' .
                 '</div>' .
                 '<!-- /wp:group -->' .
                 '<!-- wp:buttons -->' .
@@ -106,7 +106,7 @@ function dandt_register_block_patterns() {
                 '<!-- wp:group {"layout":{"type":"constrained"}} -->' .
                 '<div class="wp-block-group">' .
                     '<!-- wp:heading {"level":2} --><h2 class="wp-block-heading">' . esc_html__( 'Next step', 'dandt-theme' ) . '</h2><!-- /wp:heading -->' .
-                    '<!-- wp:paragraph --><p>' . esc_html__( 'Tell us about your business and we will get back to you within one working day.', 'dandt-theme' ) . '</p><!-- /wp:paragraph -->' .
+                    '<!-- wp:paragraph --><p>' . esc_html__( 'Tell us about your business and we will get back to you as soon as we can.', 'dandt-theme' ) . '</p><!-- /wp:paragraph -->' .
                 '</div>' .
                 '<!-- /wp:group -->' .
                 '<!-- wp:buttons -->' .

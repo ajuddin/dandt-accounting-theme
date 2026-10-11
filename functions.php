@@ -84,6 +84,33 @@ function dandt_maybe_flush_rewrites() {
 add_action( 'init', 'dandt_maybe_flush_rewrites', 20 );
 
 /**
+ * 301 redirects for retired URLs. Add an entry here whenever a page's slug
+ * changes rather than letting the old URL quietly 404 - each key is a path
+ * relative to the site root, trailing slash included.
+ *
+ * @return array<string,string>
+ */
+function dandt_legacy_redirects() {
+    return array(
+        '/about/' => '/about-us/',
+    );
+}
+
+/**
+ * Issue the 301s listed above.
+ */
+function dandt_handle_legacy_redirects() {
+    $path = untrailingslashit( wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ) ) . '/';
+    $map  = dandt_legacy_redirects();
+
+    if ( isset( $map[ $path ] ) ) {
+        wp_safe_redirect( home_url( $map[ $path ] ), 301 );
+        exit;
+    }
+}
+add_action( 'template_redirect', 'dandt_handle_legacy_redirects' );
+
+/**
  * Require theme includes.
  */
 require_once get_theme_file_path( '/inc/contact-form.php' );

@@ -1,7 +1,9 @@
 <?php
 /**
- * Services page. WordPress auto-matches this to the page with slug "services"
- * via the template hierarchy - no manual template assignment needed.
+ * Services hub page. Lists the "service" post type, grouped by the
+ * service_group taxonomy, in the order set when the groups were seeded
+ * (see inc/custom-post-types.php). Matched automatically to the page with
+ * slug "services" by WordPress's template hierarchy.
  *
  * @package dandt-theme
  */
@@ -9,6 +11,14 @@
 defined( 'ABSPATH' ) || exit;
 
 get_header();
+
+$groups = get_terms( array(
+    'taxonomy'   => 'service_group',
+    'hide_empty' => false,
+    'meta_key'   => 'dandt_order',
+    'orderby'    => 'meta_value_num',
+    'order'      => 'ASC',
+) );
 ?>
 
 <section class="dandt-section-tight">
@@ -18,57 +28,54 @@ get_header();
     </div>
 </section>
 
-<section class="dandt-section">
-    <div class="dandt-container">
-        <div class="dandt-services-grid" style="grid-template-columns: 1fr 1fr;">
+<?php if ( is_wp_error( $groups ) || empty( $groups ) ) : ?>
 
-            <article class="dandt-service-card dandt-reveal" id="company-accounts">
-                <div class="dandt-service-icon"><?php dandt_icon( 'briefcase' ); ?></div>
-                <h2 class="dandt-h3"><?php esc_html_e( 'Company Accounts', 'dandt-theme' ); ?></h2>
-                <p class="dandt-body"><?php esc_html_e( 'Statutory accounts prepared from your records and filed with HMRC and Companies House on time, every time.', 'dandt-theme' ); ?></p>
-                <ul class="dandt-feature-list">
-                    <li><?php dandt_icon( 'check' ); ?><?php esc_html_e( 'Annual accounts preparation and filing', 'dandt-theme' ); ?></li>
-                    <li><?php dandt_icon( 'check' ); ?><?php esc_html_e( 'Corporation tax return (CT600)', 'dandt-theme' ); ?></li>
-                    <li><?php dandt_icon( 'check' ); ?><?php esc_html_e( 'A plain-English walkthrough of your figures', 'dandt-theme' ); ?></li>
-                </ul>
-            </article>
-
-            <article class="dandt-service-card dandt-reveal" id="vat-returns">
-                <div class="dandt-service-icon"><?php dandt_icon( 'receipt' ); ?></div>
-                <h2 class="dandt-h3"><?php esc_html_e( 'VAT Returns', 'dandt-theme' ); ?></h2>
-                <p class="dandt-body"><?php esc_html_e( 'Quarterly VAT returns prepared and submitted under Making Tax Digital, with the scheme that suits your business.', 'dandt-theme' ); ?></p>
-                <ul class="dandt-feature-list">
-                    <li><?php dandt_icon( 'check' ); ?><?php esc_html_e( 'Making Tax Digital compliant submissions', 'dandt-theme' ); ?></li>
-                    <li><?php dandt_icon( 'check' ); ?><?php esc_html_e( 'VAT scheme and registration advice', 'dandt-theme' ); ?></li>
-                    <li><?php dandt_icon( 'check' ); ?><?php esc_html_e( 'Deadline tracking, so nothing is late', 'dandt-theme' ); ?></li>
-                </ul>
-            </article>
-
-            <article class="dandt-service-card dandt-reveal" id="payroll">
-                <div class="dandt-service-icon"><?php dandt_icon( 'users' ); ?></div>
-                <h2 class="dandt-h3"><?php esc_html_e( 'Payroll', 'dandt-theme' ); ?></h2>
-                <p class="dandt-body"><?php esc_html_e( 'Payslips, PAYE and pension contributions run on schedule, whether you have one employee or twenty.', 'dandt-theme' ); ?></p>
-                <ul class="dandt-feature-list">
-                    <li><?php dandt_icon( 'check' ); ?><?php esc_html_e( 'Payslips and PAYE submissions', 'dandt-theme' ); ?></li>
-                    <li><?php dandt_icon( 'check' ); ?><?php esc_html_e( 'Auto-enrolment pension administration', 'dandt-theme' ); ?></li>
-                    <li><?php dandt_icon( 'check' ); ?><?php esc_html_e( 'Starters, leavers and year-end handled', 'dandt-theme' ); ?></li>
-                </ul>
-            </article>
-
-            <article class="dandt-service-card dandt-reveal" id="bookkeeping">
-                <div class="dandt-service-icon"><?php dandt_icon( 'calculator' ); ?></div>
-                <h2 class="dandt-h3"><?php esc_html_e( 'Bookkeeping', 'dandt-theme' ); ?></h2>
-                <p class="dandt-body"><?php esc_html_e( 'Your day-to-day income and expenses kept current, so year-end accounts are a formality, not a scramble.', 'dandt-theme' ); ?></p>
-                <ul class="dandt-feature-list">
-                    <li><?php dandt_icon( 'check' ); ?><?php esc_html_e( 'Regular reconciliation of your accounts', 'dandt-theme' ); ?></li>
-                    <li><?php dandt_icon( 'check' ); ?><?php esc_html_e( 'Cloud accounting software setup and support', 'dandt-theme' ); ?></li>
-                    <li><?php dandt_icon( 'check' ); ?><?php esc_html_e( 'Management figures when you need them', 'dandt-theme' ); ?></li>
-                </ul>
-            </article>
-
+    <section class="dandt-section-tight">
+        <div class="dandt-container">
+            <p class="dandt-body"><?php esc_html_e( 'Service pages are being added. Check back shortly, or get in touch directly.', 'dandt-theme' ); ?></p>
         </div>
-    </div>
-</section>
+    </section>
+
+<?php else : ?>
+
+    <?php foreach ( $groups as $group ) :
+        $services = get_posts( array(
+            'post_type'      => 'service',
+            'posts_per_page' => -1,
+            'orderby'        => 'title',
+            'order'          => 'ASC',
+            'tax_query'      => array( array(
+                'taxonomy' => 'service_group',
+                'field'    => 'term_id',
+                'terms'    => $group->term_id,
+            ) ),
+        ) );
+        if ( ! $services ) {
+            continue;
+        }
+        ?>
+        <section class="dandt-section-tight">
+            <div class="dandt-container">
+                <h2 class="dandt-h2" style="margin-bottom: 1.5rem;"><?php echo esc_html( $group->name ); ?></h2>
+                <div class="dandt-services-grid" style="grid-template-columns: repeat(3, 1fr);">
+                    <?php foreach ( $services as $service ) : ?>
+                        <article class="dandt-service-card dandt-reveal">
+                            <h3 class="dandt-h3"><a href="<?php echo esc_url( get_permalink( $service ) ); ?>"><?php echo esc_html( get_the_title( $service ) ); ?></a></h3>
+                            <?php if ( $service->post_excerpt ) : ?>
+                                <p class="dandt-body"><?php echo esc_html( $service->post_excerpt ); ?></p>
+                            <?php endif; ?>
+                            <a class="dandt-btn dandt-btn-outline" href="<?php echo esc_url( get_permalink( $service ) ); ?>">
+                                <?php esc_html_e( 'Learn More', 'dandt-theme' ); ?>
+                                <?php dandt_icon( 'chevron-right' ); ?>
+                            </a>
+                        </article>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
+    <?php endforeach; ?>
+
+<?php endif; ?>
 
 <section class="dandt-section-tight">
     <div class="dandt-container">
