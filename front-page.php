@@ -2,10 +2,11 @@
 /**
  * Home page.
  *
- * No testimonials section here by design: the previous site's "John Smith"
- * quote was an unedited template placeholder, not a real client testimonial.
- * Add a real one (with permission) when the client has one - see the note
- * at the bottom of this file for where it would go.
+ * Testimonials: a placeholder slot, not an omission - the brief specifically
+ * wants one marked as pending rather than left out, unlike the previous
+ * site's unedited "John Smith" template quote, which is why this used to be
+ * dropped instead. Styled with a dashed border so it reads as unfinished,
+ * not as a real quote.
  *
  * @package dandt-theme
  */
@@ -18,10 +19,10 @@ get_header();
 <section class="dandt-hero">
     <div class="dandt-container dandt-hero-grid">
         <div class="dandt-hero-copy">
-            <h1 class="dandt-h1"><?php esc_html_e( 'Chartered accounting support you can rely on.', 'dandt-theme' ); ?></h1>
-            <p class="dandt-lede"><?php esc_html_e( 'Company accounts, VAT, payroll and bookkeeping for Essex businesses, handled by a chartered accountant who answers the phone.', 'dandt-theme' ); ?></p>
+            <h1 class="dandt-h1"><?php esc_html_e( 'Accounting support for businesses just getting started.', 'dandt-theme' ); ?></h1>
+            <p class="dandt-lede"><?php esc_html_e( 'Company accounts, VAT, payroll and bookkeeping for sole traders, startups and small businesses across Essex, handled by a chartered accountant who answers the phone.', 'dandt-theme' ); ?></p>
             <div class="dandt-hero-ctas">
-                <a class="dandt-btn dandt-btn-primary" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Get in Touch', 'dandt-theme' ); ?></a>
+                <a class="dandt-btn dandt-btn-primary" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Book a Free Consultation', 'dandt-theme' ); ?></a>
                 <a class="dandt-btn dandt-btn-outline" href="<?php echo esc_url( home_url( '/services/' ) ); ?>"><?php esc_html_e( 'View Our Services', 'dandt-theme' ); ?></a>
             </div>
         </div>
@@ -88,6 +89,50 @@ get_header();
 
 <section class="dandt-section-tight">
     <div class="dandt-container">
+        <div class="dandt-teaser dandt-reveal">
+            <div class="dandt-service-icon" style="width:56px;height:56px;flex-shrink:0;">
+                <?php dandt_icon( 'building-bank' ); ?>
+            </div>
+            <div class="dandt-teaser-copy">
+                <p class="dandt-teaser-eyebrow"><?php esc_html_e( 'Starting a business?', 'dandt-theme' ); ?></p>
+                <h2 class="dandt-h2"><?php esc_html_e( 'The D&T New Business Starter', 'dandt-theme' ); ?></h2>
+                <p class="dandt-body"><?php esc_html_e( 'A first-year package built for sole traders and small limited companies: structure guidance, HMRC registrations, bookkeeping setup and a clear view of what you\'ll owe and when.', 'dandt-theme' ); ?></p>
+            </div>
+            <a class="dandt-btn dandt-btn-primary" href="<?php echo esc_url( home_url( '/services/new-business-starter/' ) ); ?>">
+                <?php esc_html_e( 'Learn More', 'dandt-theme' ); ?>
+                <?php dandt_icon( 'chevron-right' ); ?>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="dandt-section-tight">
+    <div class="dandt-container">
+        <div class="dandt-section-head dandt-reveal">
+            <h2 class="dandt-h2"><?php esc_html_e( 'How it works', 'dandt-theme' ); ?></h2>
+        </div>
+        <div class="dandt-steps">
+            <div class="dandt-step dandt-reveal">
+                <span class="dandt-step-num">1</span>
+                <h3 class="dandt-h3"><?php esc_html_e( 'Talk', 'dandt-theme' ); ?></h3>
+                <p class="dandt-body"><?php esc_html_e( 'A free consultation to understand your business and what you actually need from an accountant.', 'dandt-theme' ); ?></p>
+            </div>
+            <div class="dandt-step dandt-reveal">
+                <span class="dandt-step-num">2</span>
+                <h3 class="dandt-h3"><?php esc_html_e( 'Set up', 'dandt-theme' ); ?></h3>
+                <p class="dandt-body"><?php esc_html_e( 'We get your accounting set up properly from day one - the right structure, the right registrations, the right records.', 'dandt-theme' ); ?></p>
+            </div>
+            <div class="dandt-step dandt-reveal">
+                <span class="dandt-step-num">3</span>
+                <h3 class="dandt-h3"><?php esc_html_e( 'Stay on track', 'dandt-theme' ); ?></h3>
+                <p class="dandt-body"><?php esc_html_e( 'Ongoing support that keeps deadlines ahead of you, not behind you.', 'dandt-theme' ); ?></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dandt-section-tight">
+    <div class="dandt-container">
         <div class="dandt-feature-row dandt-reveal">
             <div class="dandt-feature-media">
                 <img
@@ -98,7 +143,7 @@ get_header();
             </div>
             <div class="dandt-feature-copy">
                 <h2 class="dandt-h2"><?php esc_html_e( 'One point of contact, not a call queue', 'dandt-theme' ); ?></h2>
-                <p class="dandt-body"><?php esc_html_e( 'When you call, you speak with the accountant who actually manages your accounts. No case numbers, no being passed between departments.', 'dandt-theme' ); ?></p>
+                <p class="dandt-body"><?php esc_html_e( 'When you call, you speak with the accountant who actually manages your accounts, and gets things explained in plain English, not accountant jargon.', 'dandt-theme' ); ?></p>
             </div>
         </div>
 
@@ -120,12 +165,21 @@ get_header();
 
 <section class="dandt-section-tight">
     <div class="dandt-container">
+        <?php /* TODO: replace with a real client testimonial, with permission, once the firm has one to share. */ ?>
+        <div class="dandt-testimonial-placeholder dandt-reveal">
+            <p><?php esc_html_e( 'A client testimonial will go here once we have one to share.', 'dandt-theme' ); ?></p>
+        </div>
+    </div>
+</section>
+
+<section class="dandt-section-tight">
+    <div class="dandt-container">
         <div class="dandt-cta-band dandt-reveal">
             <div>
                 <h2 class="dandt-h2"><?php esc_html_e( 'Ready to simplify your accounts?', 'dandt-theme' ); ?></h2>
-                <p class="dandt-body"><?php esc_html_e( 'Tell us a little about your business and we will get back to you as soon as we can.', 'dandt-theme' ); ?></p>
+                <p class="dandt-body"><?php esc_html_e( 'Book a free consultation and tell us a little about your business - we will get back to you as soon as we can.', 'dandt-theme' ); ?></p>
             </div>
-            <a class="dandt-btn dandt-btn-primary" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Get in Touch', 'dandt-theme' ); ?></a>
+            <a class="dandt-btn dandt-btn-primary" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Book a Free Consultation', 'dandt-theme' ); ?></a>
         </div>
     </div>
 </section>
