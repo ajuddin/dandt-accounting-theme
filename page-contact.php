@@ -140,14 +140,11 @@ $status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['contact']
     <div class="dandt-container">
         <?php
         /*
-         * TODO: Calendly scheduling link needed from the firm. Calendly
-         * syncs natively with both Google Calendar and Microsoft 365/Outlook
-         * once connected on Calendly's side (their own OAuth, not something
-         * configured here) - set that up on a free Calendly account, then
-         * replace the placeholder URL below with the real scheduling link.
-         * Until then this renders nothing rather than a broken embed.
+         * Calendly syncs with Google Calendar/Microsoft 365 entirely on
+         * Calendly's own side (connected when the firm set up this account) -
+         * nothing to configure here beyond this URL.
          */
-        $calendly_url = ''; // e.g. 'https://calendly.com/dandt-accounting/consultation'
+        $calendly_url = 'https://calendly.com/dandtaccauk/30min';
         if ( $calendly_url ) :
             ?>
             <div
