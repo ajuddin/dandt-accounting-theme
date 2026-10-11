@@ -51,8 +51,13 @@ $dandt = dandt_business_details();
 <header class="dandt-header" id="dandt-header">
     <div class="dandt-container dandt-header-inner">
         <a class="dandt-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-            <span class="dandt-logo-mark" aria-hidden="true">D&amp;T</span>
-            <span><?php bloginfo( 'name' ); ?></span>
+            <?php /* The actual production logo file, copied as-is rather than recreated. */ ?>
+            <img
+                class="dandt-logo-img"
+                src="<?php echo esc_url( get_theme_file_uri( '/assets/brand/logo.svg' ) ); ?>"
+                alt="<?php bloginfo( 'name' ); ?>"
+                width="188" height="53"
+            >
         </a>
 
         <nav class="dandt-nav" aria-label="<?php esc_attr_e( 'Primary', 'dandt-theme' ); ?>">
