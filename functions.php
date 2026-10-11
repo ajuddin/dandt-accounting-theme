@@ -10,7 +10,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'DANDT_VERSION', '1.0.0' );
+define( 'DANDT_VERSION', '1.1.0' );
 
 /**
  * Theme setup: menus, image sizes, title-tag support.
@@ -19,6 +19,16 @@ function dandt_setup() {
     add_theme_support( 'title-tag' );
     add_theme_support( 'post-thumbnails' );
     add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
+
+    /*
+     * Service/location pages and blog posts are authored entirely in the
+     * block editor (see inc/custom-post-types.php), so the editor needs to
+     * preview what the front end actually looks like. Reusing style.css
+     * keeps one source of truth instead of a parallel editor stylesheet.
+     */
+    add_theme_support( 'editor-styles' );
+    add_editor_style( 'style.css' );
+    add_theme_support( 'wp-block-styles' );
 
     register_nav_menus( array(
         'primary' => __( 'Primary Navigation', 'dandt-theme' ),
@@ -61,7 +71,22 @@ function dandt_business_details() {
 }
 
 /**
+ * Flush rewrite rules once whenever a post type's URL structure changes.
+ * Without this, new post types 404 until something triggers a flush -
+ * normally a manual theme deactivate/reactivate, which this avoids.
+ */
+function dandt_maybe_flush_rewrites() {
+    if ( get_option( 'dandt_rewrite_version' ) !== DANDT_VERSION ) {
+        flush_rewrite_rules();
+        update_option( 'dandt_rewrite_version', DANDT_VERSION, false );
+    }
+}
+add_action( 'init', 'dandt_maybe_flush_rewrites', 20 );
+
+/**
  * Require theme includes.
  */
 require_once get_theme_file_path( '/inc/contact-form.php' );
 require_once get_theme_file_path( '/inc/icons.php' );
+require_once get_theme_file_path( '/inc/custom-post-types.php' );
+require_once get_theme_file_path( '/inc/block-patterns.php' );

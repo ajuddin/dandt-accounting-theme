@@ -599,6 +599,91 @@ h1, h2, h3, h4, p { margin: 0; }
 }
 
 /* ==========================================================================
+   Block editor content (service/location pages, blog posts)
+
+   These pages are authored entirely in Gutenberg, so core block output
+   classes are styled directly rather than asking editors to add custom
+   classes to every paragraph. A Group block given the className
+   "dandt-cta-band", "dandt-service-card" etc already matches the component
+   CSS defined earlier in this file - no separate ruleset needed for those.
+   ========================================================================== */
+
+.dandt-price-tag {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: var(--accent-ink);
+}
+
+.entry-content { display: grid; gap: 1.5rem; }
+.entry-content > * { max-width: 70ch; }
+.entry-content .wp-block-group,
+.entry-content .wp-block-columns,
+.entry-content .wp-block-buttons { max-width: none; }
+
+.entry-content h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    font-size: clamp(1.4rem, 1.1rem + 1.2vw, 1.85rem);
+    margin-top: 0.5rem;
+}
+.entry-content h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+}
+.entry-content p,
+.entry-content li { color: var(--ink-soft); }
+.entry-content ul.wp-block-list,
+.entry-content ol.wp-block-list { padding-left: 1.3rem; display: grid; gap: 0.4rem; }
+.entry-content strong { color: var(--ink); }
+
+.entry-content .wp-block-buttons { display: flex; gap: 0.85rem; flex-wrap: wrap; }
+.entry-content .wp-block-button__link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.85rem 1.5rem;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    font-size: 0.95rem;
+    background: var(--accent);
+    color: var(--accent-on);
+    transition: background-color 0.15s ease;
+}
+.entry-content .wp-block-button__link:hover { background: var(--accent-ink); }
+.entry-content .wp-block-button.is-style-outline .wp-block-button__link {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--ink);
+}
+.entry-content .wp-block-button.is-style-outline .wp-block-button__link:hover {
+    border-color: var(--accent);
+    color: var(--accent-ink);
+}
+
+/* FAQs: native <details>/<summary>, no JS accordion needed */
+.entry-content .wp-block-details {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    max-width: none;
+}
+.entry-content .wp-block-details summary {
+    font-weight: 700;
+    cursor: pointer;
+}
+.entry-content .wp-block-details[open] summary { margin-bottom: 0.6rem; }
+
+.entry-content .wp-block-separator {
+    border: none;
+    border-top: 1px solid var(--border);
+    max-width: none;
+    margin: 0.5rem 0;
+}
+
+/* ==========================================================================
    404
    ========================================================================== */
 
