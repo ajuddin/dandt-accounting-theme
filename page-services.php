@@ -59,15 +59,16 @@ $groups = get_terms( array(
                 <h2 class="dandt-h2" style="margin-bottom: 1.5rem;"><?php echo esc_html( $group->name ); ?></h2>
                 <div class="dandt-services-grid" style="grid-template-columns: repeat(3, 1fr);">
                     <?php foreach ( $services as $service ) : ?>
-                        <article class="dandt-service-card dandt-reveal">
-                            <h3 class="dandt-h3"><a href="<?php echo esc_url( get_permalink( $service ) ); ?>"><?php echo esc_html( get_the_title( $service ) ); ?></a></h3>
+                        <article class="dandt-service-card dandt-service-card--link dandt-reveal">
+                            <div class="dandt-service-icon"><?php dandt_icon( dandt_service_icon( $service->post_name ) ); ?></div>
+                            <h3 class="dandt-h3"><a class="dandt-service-card-title" href="<?php echo esc_url( get_permalink( $service ) ); ?>"><?php echo esc_html( get_the_title( $service ) ); ?></a></h3>
                             <?php if ( $service->post_excerpt ) : ?>
                                 <p class="dandt-body"><?php echo esc_html( $service->post_excerpt ); ?></p>
                             <?php endif; ?>
-                            <a class="dandt-btn dandt-btn-outline" href="<?php echo esc_url( get_permalink( $service ) ); ?>">
+                            <span class="dandt-service-card-cta">
                                 <?php esc_html_e( 'Learn More', 'dandt-theme' ); ?>
                                 <?php dandt_icon( 'chevron-right' ); ?>
-                            </a>
+                            </span>
                         </article>
                     <?php endforeach; ?>
                 </div>

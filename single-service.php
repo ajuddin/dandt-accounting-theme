@@ -15,32 +15,9 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 
-/*
- * One icon per service, matching its actual subject rather than reusing a
- * generic mark everywhere - same brand-panel treatment as the homepage, so
- * the two don't look like unrelated design systems.
- */
-$service_hero_icons = array(
-    'startup-accounting'         => 'building-bank',
-    'new-business-starter'       => 'building-bank',
-    'sole-trader-accounting'     => 'briefcase',
-    'limited-company-accounting' => 'shield-check',
-    'self-assessment-tax-returns' => 'receipt',
-    'bookkeeping'                => 'calculator',
-    'corporation-tax'            => 'receipt',
-    'year-end-accounts'          => 'briefcase',
-    'vat-returns'                => 'receipt',
-    'payroll'                    => 'users',
-    'company-formation'          => 'building-bank',
-    'tax-planning'               => 'calculator',
-    'management-accounts'        => 'briefcase',
-    'making-tax-digital'         => 'calculator',
-    'switching-accountants'      => 'shield-check',
-);
-
 while ( have_posts() ) :
     the_post();
-    $hero_icon = $service_hero_icons[ get_post_field( 'post_name' ) ] ?? 'briefcase';
+    $hero_icon = dandt_service_icon( get_post_field( 'post_name' ) );
     ?>
     <section class="dandt-section-tight">
         <div class="dandt-container dandt-service-hero">

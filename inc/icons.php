@@ -69,3 +69,53 @@ function dandt_brand_panel( $icon, $class = '' ) {
     echo '</span>';
     echo '</div>';
 }
+
+/**
+ * One icon per service, matching its actual subject rather than reusing a
+ * generic mark everywhere. Shared between single-service.php (the hero
+ * banner) and page-services.php (the hub grid), so a service's icon is the
+ * same wherever it appears rather than being picked twice independently.
+ *
+ * @param string $slug Service post slug.
+ * @return string Icon key from dandt_icon().
+ */
+function dandt_service_icon( $slug ) {
+    $icons = array(
+        'startup-accounting'           => 'building-bank',
+        'new-business-starter'         => 'building-bank',
+        'sole-trader-accounting'       => 'briefcase',
+        'limited-company-accounting'   => 'shield-check',
+        'self-assessment-tax-returns'  => 'receipt',
+        'bookkeeping'                  => 'calculator',
+        'corporation-tax'              => 'receipt',
+        'year-end-accounts'            => 'briefcase',
+        'vat-returns'                  => 'receipt',
+        'payroll'                      => 'users',
+        'company-formation'            => 'building-bank',
+        'tax-planning'                 => 'calculator',
+        'management-accounts'          => 'briefcase',
+        'making-tax-digital'           => 'calculator',
+        'switching-accountants'        => 'shield-check',
+    );
+
+    return $icons[ $slug ] ?? 'briefcase';
+}
+
+/**
+ * One icon per Who We Help audience. Shared between single-location.php and
+ * page-who-we-help.php for the same reason as dandt_service_icon() above.
+ *
+ * @param string $slug Location post slug.
+ * @return string Icon key from dandt_icon().
+ */
+function dandt_location_icon( $slug ) {
+    $icons = array(
+        'startups-chelmsford'                   => 'building-bank',
+        'sole-traders-chelmsford'                => 'briefcase',
+        'limited-company-accountants-chelmsford' => 'shield-check',
+        'freelancers-consultants'                => 'user',
+        'small-businesses-essex'                 => 'users',
+    );
+
+    return $icons[ $slug ] ?? 'briefcase';
+}

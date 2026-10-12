@@ -29,13 +29,13 @@ get_header();
                 while ( have_posts() ) :
                     the_post();
                     ?>
-                    <article class="dandt-service-card dandt-reveal">
-                        <h2 class="dandt-h3"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                    <article class="dandt-service-card dandt-service-card--link dandt-reveal">
+                        <h2 class="dandt-h3"><a class="dandt-service-card-title" href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
                         <p class="dandt-body"><?php echo esc_html( get_the_excerpt() ); ?></p>
-                        <a class="dandt-btn dandt-btn-outline" href="<?php the_permalink(); ?>">
+                        <span class="dandt-service-card-cta">
                             <?php esc_html_e( 'Read More', 'dandt-theme' ); ?>
                             <?php dandt_icon( 'chevron-right' ); ?>
-                        </a>
+                        </span>
                     </article>
                 <?php endwhile; ?>
             </div>

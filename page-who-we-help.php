@@ -34,15 +34,16 @@ $audiences = get_posts( array(
         <?php else : ?>
             <div class="dandt-services-grid" style="grid-template-columns: repeat(3, 1fr);">
                 <?php foreach ( $audiences as $audience ) : ?>
-                    <article class="dandt-service-card dandt-reveal">
-                        <h2 class="dandt-h3"><a href="<?php echo esc_url( get_permalink( $audience ) ); ?>"><?php echo esc_html( get_the_title( $audience ) ); ?></a></h2>
+                    <article class="dandt-service-card dandt-service-card--link dandt-reveal">
+                        <div class="dandt-service-icon"><?php dandt_icon( dandt_location_icon( $audience->post_name ) ); ?></div>
+                        <h2 class="dandt-h3"><a class="dandt-service-card-title" href="<?php echo esc_url( get_permalink( $audience ) ); ?>"><?php echo esc_html( get_the_title( $audience ) ); ?></a></h2>
                         <?php if ( $audience->post_excerpt ) : ?>
                             <p class="dandt-body"><?php echo esc_html( $audience->post_excerpt ); ?></p>
                         <?php endif; ?>
-                        <a class="dandt-btn dandt-btn-outline" href="<?php echo esc_url( get_permalink( $audience ) ); ?>">
+                        <span class="dandt-service-card-cta">
                             <?php esc_html_e( 'Learn More', 'dandt-theme' ); ?>
                             <?php dandt_icon( 'chevron-right' ); ?>
-                        </a>
+                        </span>
                     </article>
                 <?php endforeach; ?>
             </div>

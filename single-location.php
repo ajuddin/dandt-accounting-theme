@@ -13,17 +13,9 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 
-$location_hero_icons = array(
-    'startups-chelmsford'                   => 'building-bank',
-    'sole-traders-chelmsford'                => 'briefcase',
-    'limited-company-accountants-chelmsford' => 'shield-check',
-    'freelancers-consultants'                => 'user',
-    'small-businesses-essex'                 => 'users',
-);
-
 while ( have_posts() ) :
     the_post();
-    $hero_icon = $location_hero_icons[ get_post_field( 'post_name' ) ] ?? 'briefcase';
+    $hero_icon = dandt_location_icon( get_post_field( 'post_name' ) );
     ?>
     <section class="dandt-section-tight">
         <div class="dandt-container dandt-service-hero">
