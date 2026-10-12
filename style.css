@@ -680,6 +680,14 @@ h1, h2, h3, h4, p { margin: 0; }
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    /*
+     * Without this, flex's default align-items: stretch pulls the "Learn
+     * More" button to the card's full width (its only other child, the
+     * copy block above, sizes independently via its own width:auto) -
+     * combined with the old sizeless icon bug, that's what made the arrow
+     * icon look like a giant image. Buttons should stay content-sized.
+     */
+    align-items: flex-start;
     padding: 2.25rem;
 }
 .dandt-service-card.is-featured .dandt-body { color: color-mix(in srgb, var(--paper) 72%, transparent); }

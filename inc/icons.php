@@ -42,7 +42,18 @@ function dandt_icon( $name, $class = '' ) {
         return;
     }
 
-    echo '<svg xmlns="http://www.w3.org/2000/svg" class="' . esc_attr( $class ) . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+    /*
+     * width/height here (not just viewBox) matter: without them, a bare
+     * SVG has no intrinsic size, so inside any flex container that
+     * stretches its items by default (align-items: stretch, with no
+     * sizing CSS of its own - the "Learn More" button on the homepage's
+     * featured Company Accounts card was exactly this case) the icon
+     * balloons to fill the stretched box instead of staying icon-sized.
+     * CSS elsewhere (e.g. .dandt-nav-call svg { width: 16px }) still wins
+     * via specificity, so this is only the fallback for contexts with no
+     * explicit sizing rule of their own.
+     */
+    echo '<svg xmlns="http://www.w3.org/2000/svg" class="' . esc_attr( $class ) . '" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
         . $paths[ $name ] // phpcs:ignore -- static vendored SVG markup, not user input.
         . '</svg>';
 }
