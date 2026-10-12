@@ -30,7 +30,15 @@ function dandt_register_service_type() {
         'has_archive'  => false,
         'rewrite'      => array( 'slug' => 'services', 'with_front' => false ),
         'menu_icon'    => 'dashicons-briefcase',
-        'supports'     => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
+        /*
+         * 'custom-fields' is what actually makes WordPress register a
+         * generic REST `meta` field for this post type - without it,
+         * register_post_meta() entries (inc/seo.php's Rank Math fields)
+         * never appear in the REST schema at all, regardless of how
+         * they're registered. page/post get this for free from core;
+         * custom post types don't unless asked for explicitly.
+         */
+        'supports'     => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'custom-fields' ),
         'template'     => array(
             array( 'core/paragraph', array( 'placeholder' => __( 'The client\'s problem, in plain English...', 'dandt-theme' ) ) ),
         ),
@@ -103,7 +111,15 @@ function dandt_register_location_type() {
         'has_archive'  => false,
         'rewrite'      => array( 'slug' => 'who-we-help', 'with_front' => false ),
         'menu_icon'    => 'dashicons-groups',
-        'supports'     => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
+        /*
+         * 'custom-fields' is what actually makes WordPress register a
+         * generic REST `meta` field for this post type - without it,
+         * register_post_meta() entries (inc/seo.php's Rank Math fields)
+         * never appear in the REST schema at all, regardless of how
+         * they're registered. page/post get this for free from core;
+         * custom post types don't unless asked for explicitly.
+         */
+        'supports'     => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'custom-fields' ),
     ) );
 }
 add_action( 'init', 'dandt_register_location_type' );
