@@ -29,6 +29,7 @@ $dandt = dandt_business_details();
         'url'       => home_url( '/' ),
         'telephone' => $dandt['phone_href'],
         'email'     => $dandt['email'],
+        'image'     => get_theme_file_uri( '/assets/brand/logo.svg' ),
         'address'   => array(
             '@type'           => 'PostalAddress',
             'streetAddress'   => implode( ', ', $dandt['address_lines'] ),
@@ -36,7 +37,14 @@ $dandt = dandt_business_details();
             'addressRegion'   => 'Essex',
             'addressCountry'  => 'GB',
         ),
-        'areaServed' => 'Essex, UK',
+        'areaServed'                => 'Essex, UK',
+        /* Derived directly from dandt_business_details()['hours'] - not a separate invented figure. */
+        'openingHoursSpecification' => array(
+            '@type'     => 'OpeningHoursSpecification',
+            'dayOfWeek' => array( 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday' ),
+            'opens'     => '09:00',
+            'closes'    => '17:00',
+        ),
     );
     ?>
     <script type="application/ld+json"><?php echo wp_json_encode( $schema ); ?></script>
