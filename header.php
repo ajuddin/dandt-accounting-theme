@@ -48,6 +48,8 @@ $dandt = dandt_business_details();
 
 <a class="skip-link" href="#main"><?php esc_html_e( 'Skip to content', 'dandt-theme' ); ?></a>
 
+<div class="dandt-brand-bar" aria-hidden="true"></div>
+
 <header class="dandt-header" id="dandt-header">
     <div class="dandt-container dandt-header-inner">
         <a class="dandt-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
@@ -56,8 +58,10 @@ $dandt = dandt_business_details();
                 class="dandt-logo-img"
                 src="<?php echo esc_url( get_theme_file_uri( '/assets/brand/logo.svg' ) ); ?>"
                 alt="<?php bloginfo( 'name' ); ?>"
-                width="188" height="53"
+                width="260" height="73"
             >
+            <?php /* Real tagline from the production logo asset, not invented copy. */ ?>
+            <span class="dandt-logo-tagline"><?php esc_html_e( 'Your Partner in Progress', 'dandt-theme' ); ?></span>
         </a>
 
         <nav class="dandt-nav" aria-label="<?php esc_attr_e( 'Primary', 'dandt-theme' ); ?>">
@@ -105,14 +109,17 @@ $dandt = dandt_business_details();
 
 <?php
 /*
- * Sticky mobile CTA, per the brief. Hidden on desktop (see .dandt-mobile-cta
- * in style.css); sits above the safe area on phones so it never covers
- * content or gets clipped by the home-indicator on iOS.
+ * Sticky mobile CTA. Points at the consultation booking page rather than
+ * general Contact - that's the single highest-value conversion action, and
+ * mobile screen space is too scarce to spend on the lower-intent option.
+ * Hidden on desktop (see .dandt-mobile-cta in style.css); sits above the
+ * safe area on phones so it never covers content or gets clipped by the
+ * home-indicator on iOS.
  */
 ?>
-<a class="dandt-mobile-cta" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">
-    <?php dandt_icon( 'phone' ); ?>
-    <?php esc_html_e( 'Contact D&T Accounting', 'dandt-theme' ); ?>
+<a class="dandt-mobile-cta" href="<?php echo esc_url( home_url( '/book-a-consultation/' ) ); ?>">
+    <?php dandt_icon( 'calendar' ); ?>
+    <?php esc_html_e( 'Book a Consultation', 'dandt-theme' ); ?>
 </a>
 
 <main id="main">

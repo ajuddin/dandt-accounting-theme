@@ -19,10 +19,11 @@ get_header();
 <section class="dandt-hero">
     <div class="dandt-container dandt-hero-grid">
         <div class="dandt-hero-copy">
+            <p class="dandt-hero-eyebrow"><?php esc_html_e( 'Your Partner in Progress', 'dandt-theme' ); ?></p>
             <h1 class="dandt-h1"><?php esc_html_e( 'Accounting support for businesses just getting started.', 'dandt-theme' ); ?></h1>
             <p class="dandt-lede"><?php esc_html_e( 'Company accounts, VAT, payroll and bookkeeping for sole traders, startups and small businesses across Essex, handled by a chartered accountant who answers the phone.', 'dandt-theme' ); ?></p>
             <div class="dandt-hero-ctas">
-                <a class="dandt-btn dandt-btn-primary" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Book a Free Consultation', 'dandt-theme' ); ?></a>
+                <a class="dandt-btn dandt-btn-primary" href="<?php echo esc_url( home_url( '/book-a-consultation/' ) ); ?>"><?php esc_html_e( 'Book a Consultation', 'dandt-theme' ); ?></a>
                 <a class="dandt-btn dandt-btn-outline" href="<?php echo esc_url( home_url( '/services/' ) ); ?>"><?php esc_html_e( 'View Our Services', 'dandt-theme' ); ?></a>
             </div>
         </div>
@@ -177,9 +178,9 @@ get_header();
         <div class="dandt-cta-band dandt-reveal">
             <div>
                 <h2 class="dandt-h2"><?php esc_html_e( 'Ready to simplify your accounts?', 'dandt-theme' ); ?></h2>
-                <p class="dandt-body"><?php esc_html_e( 'Book a free consultation and tell us a little about your business - we will get back to you as soon as we can.', 'dandt-theme' ); ?></p>
+                <p class="dandt-body"><?php esc_html_e( 'Book a free, no-obligation consultation and tell us a little about your business.', 'dandt-theme' ); ?></p>
             </div>
-            <a class="dandt-btn dandt-btn-primary" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Book a Free Consultation', 'dandt-theme' ); ?></a>
+            <a class="dandt-btn dandt-btn-primary" href="<?php echo esc_url( home_url( '/book-a-consultation/' ) ); ?>"><?php esc_html_e( 'Book a Consultation', 'dandt-theme' ); ?></a>
         </div>
     </div>
 </section>

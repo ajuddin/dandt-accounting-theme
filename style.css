@@ -60,6 +60,28 @@ Text Domain: dandt-theme
     --accent-deep: #263238;
     --highlight: #ffa726;
 
+    /*
+     * Brand blue: sampled directly from the logo file's own gradient
+     * (assets/brand/logo.png), not invented - the icon runs from this
+     * bright blue to this deep navy on a diagonal. Teal stays the one
+     * interactive/CTA colour site-wide (it's what the production site's
+     * own buttons use); brand blue is the decorative/atmospheric colour -
+     * hero wash, the top brand bar, dark-panel gradients - so the page
+     * visibly ties back to the logo without diluting which colour means
+     * "click here".
+     */
+    --brand-blue: #1287ca;
+    --brand-blue-deep: #16222b;
+
+    /*
+     * Second stop for the dark-panel gradients (CTA band, featured service
+     * card). Kept as its own token rather than reusing --brand-blue-deep
+     * directly: in dark mode those panels flip to a LIGHT pop-card paired
+     * with near-black text (see below), so the second stop has to flip
+     * light too, or the gradient would fade to unreadable dark-on-dark.
+     */
+    --panel-accent-2: #16222b;
+
     --font-display: 'Lato', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
     --font-body: 'Lato', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
@@ -82,6 +104,9 @@ Text Domain: dandt-theme
         --accent-on: #06201c;
         --accent-deep: #9db3b8;
         --highlight: #ffb966;
+        --brand-blue: #4fb8ef;
+        --brand-blue-deep: #0d161c;
+        --panel-accent-2: #c3e4f5;
         --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px -16px rgb(0 0 0 / 0.6);
     }
 }
@@ -216,6 +241,14 @@ h1, h2, h3, h4, p { margin: 0; }
    Header
    ========================================================================== */
 
+/* Thin gradient flourish across the very top of every page, running the
+   logo's own blue into the site's teal accent - a small, persistent tie
+   between the brand mark and the interactive colour used everywhere else. */
+.dandt-brand-bar {
+    height: 4px;
+    background: linear-gradient(90deg, var(--brand-blue), var(--accent));
+}
+
 .dandt-header {
     position: sticky;
     top: 0;
@@ -230,22 +263,47 @@ h1, h2, h3, h4, p { margin: 0; }
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
-    height: 72px;
+    min-height: 88px;
+    padding: 0.75rem 0;
 }
 
 .dandt-logo {
     display: flex;
     align-items: center;
+    gap: 0.85rem;
 }
 .dandt-logo-img {
-    height: 44px;
+    height: 60px;
     width: auto;
 }
-/* The production logo is a fixed dark-grey mark with no dark-mode variant of
-   its own; invert it for contrast on a dark header rather than maintain a
-   second logo asset. */
+.dandt-logo-tagline {
+    display: none;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    border-left: 1px solid var(--border);
+    padding-left: 0.85rem;
+    white-space: nowrap;
+}
+@media (min-width: 1240px) {
+    .dandt-logo-tagline { display: inline-block; }
+}
+
+/*
+ * The production logo is one flat image: a blue gradient icon plus a dark
+ * grey wordmark and tagline, with no dark-mode variant of its own. A plain
+ * invert() would flip the text to readable light grey but also flip the
+ * blue icon to orange - off-brand. invert() + hue-rotate(180deg) is the
+ * standard "smart invert" combination: it still lightens the dark text
+ * (near-zero saturation, so the hue rotation does nothing to it) while
+ * rotating the icon's hue back close to its original blue.
+ */
 @media (prefers-color-scheme: dark) {
-    .dandt-logo-img { filter: invert(1); }
+    .dandt-logo-img { filter: invert(1) hue-rotate(180deg); }
+}
+@media (max-width: 900px) {
+    .dandt-header-inner { min-height: 72px; }
+    .dandt-logo-img { height: 48px; }
 }
 
 .dandt-nav {
@@ -309,7 +367,7 @@ h1, h2, h3, h4, p { margin: 0; }
         display: flex;
         flex-direction: column;
         position: absolute;
-        top: 72px;
+        top: 100%;
         left: 0;
         right: 0;
         background: var(--surface);
@@ -363,13 +421,42 @@ h1, h2, h3, h4, p { margin: 0; }
    ========================================================================== */
 
 .dandt-hero {
+    position: relative;
+    overflow: hidden;
     padding: 3.5rem 0 4.5rem;
 }
+/* Soft atmospheric wash in the logo's own blue, blurred and low-opacity
+   behind the hero content - the "use colour matching the logo" fix, kept
+   decorative rather than interactive so it never competes with the teal
+   CTAs sitting on top of it. */
+.dandt-hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 60vw;
+    height: 60vw;
+    max-width: 720px;
+    max-height: 720px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--brand-blue) 32%, transparent), transparent 70%);
+    filter: blur(10px);
+    pointer-events: none;
+    z-index: 0;
+}
 .dandt-hero-grid {
+    position: relative;
+    z-index: 1;
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     gap: 3rem;
     align-items: center;
+}
+.dandt-hero-eyebrow {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: var(--brand-blue);
 }
 .dandt-hero-copy > * + * { margin-top: 1.25rem; }
 .dandt-hero-ctas {
@@ -397,7 +484,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .dandt-trust {
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    background: var(--paper-dim);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--brand-blue-deep) 4%, var(--paper-dim)), var(--paper-dim));
 }
 .dandt-trust-row {
     display: flex;
@@ -443,7 +530,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .dandt-service-card.is-featured {
     grid-column: span 2;
     grid-row: span 2;
-    background: var(--accent-deep);
+    background: linear-gradient(135deg, var(--accent-deep), var(--panel-accent-2));
     color: var(--paper);
     border-color: var(--accent-deep);
     display: flex;
@@ -515,7 +602,7 @@ h1, h2, h3, h4, p { margin: 0; }
    ========================================================================== */
 
 .dandt-cta-band {
-    background: var(--accent-deep);
+    background: linear-gradient(135deg, var(--accent-deep), var(--panel-accent-2));
     color: var(--paper);
     border-radius: var(--radius-card);
     padding: 3rem;
@@ -814,6 +901,23 @@ h1, h2, h3, h4, p { margin: 0; }
     border-top: 1px solid var(--border);
     max-width: none;
     margin: 0.5rem 0;
+}
+
+/* ==========================================================================
+   Booking page (Calendly embed)
+   ========================================================================== */
+
+.dandt-booking-embed {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: 0.5rem;
+}
+.dandt-booking-alt {
+    text-align: center;
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
 }
 
 /* ==========================================================================

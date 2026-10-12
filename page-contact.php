@@ -132,30 +132,22 @@ $status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['contact']
     </div>
 </section>
 
+<?php
+/*
+ * Deliberately a nudge, not a second Calendly embed: booking a consultation
+ * is its own distinct action (see page-book-a-consultation.php), kept apart
+ * from this page's enquiry form so the two don't compete for attention.
+ */
+?>
 <section class="dandt-section-tight">
-    <div class="dandt-container dandt-section-head">
-        <h2 class="dandt-h2"><?php esc_html_e( 'Prefer to book a call directly?', 'dandt-theme' ); ?></h2>
-        <p class="dandt-body"><?php esc_html_e( 'Pick a time that works for you and it\'s confirmed straight away - no back-and-forth over email.', 'dandt-theme' ); ?></p>
-    </div>
     <div class="dandt-container">
-        <?php
-        /*
-         * Calendly syncs with Google Calendar/Microsoft 365 entirely on
-         * Calendly's own side (connected when the firm set up this account) -
-         * nothing to configure here beyond this URL.
-         */
-        $calendly_url = 'https://calendly.com/dandtaccauk/30min';
-        if ( $calendly_url ) :
-            ?>
-            <div
-                class="calendly-inline-widget"
-                data-url="<?php echo esc_url( $calendly_url ); ?>"
-                style="min-width:320px;height:700px;"
-            ></div>
-            <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-        <?php else : ?>
-            <p class="dandt-body"><?php esc_html_e( 'Online booking is being set up. For now, please call or use the form above to arrange a time.', 'dandt-theme' ); ?></p>
-        <?php endif; ?>
+        <div class="dandt-cta-band dandt-reveal">
+            <div>
+                <h2 class="dandt-h2"><?php esc_html_e( 'Prefer to book a call directly?', 'dandt-theme' ); ?></h2>
+                <p class="dandt-body"><?php esc_html_e( 'Pick a time that works for you and it\'s confirmed straight away - no back-and-forth over email.', 'dandt-theme' ); ?></p>
+            </div>
+            <a class="dandt-btn dandt-btn-primary" href="<?php echo esc_url( home_url( '/book-a-consultation/' ) ); ?>"><?php esc_html_e( 'Book a Consultation', 'dandt-theme' ); ?></a>
+        </div>
     </div>
 </section>
 
