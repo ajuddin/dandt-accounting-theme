@@ -1195,3 +1195,56 @@ h1, h2, h3, h4, p { margin: 0; }
     padding: 6rem 0;
 }
 .dandt-404 > * + * { margin-top: 1.25rem; }
+
+/* ==========================================================================
+   Package finder (Pricing page guided selector)
+   ========================================================================== */
+
+.dandt-package-finder {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 2rem;
+}
+.dandt-package-finder > * + * { margin-top: 1.75rem; }
+
+.dandt-pf-question {
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+}
+.dandt-pf-options {
+    display: grid;
+    gap: 0.6rem;
+}
+.dandt-pf-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.dandt-pf-option:hover { border-color: color-mix(in srgb, var(--accent) 35%, var(--border)); }
+.dandt-pf-option:has(input:checked) {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+}
+.dandt-pf-option input { margin-top: 0.2rem; accent-color: var(--accent); }
+
+.dandt-pf-results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.dandt-pf-result-card {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+.dandt-pf-result-card h4 { margin-bottom: 0.4rem; }
+.dandt-pf-result-card p { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 0.75rem; }
+.dandt-pf-result-card a { font-weight: 700; color: var(--accent-ink); }

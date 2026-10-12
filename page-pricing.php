@@ -34,6 +34,51 @@ $factors = array(
 
 <section class="dandt-section-tight">
     <div class="dandt-container">
+        <div class="dandt-section-head" style="margin-bottom: 1.5rem;">
+            <h2 class="dandt-h2"><?php esc_html_e( 'Find your package', 'dandt-theme' ); ?></h2>
+            <p class="dandt-lede"><?php esc_html_e( 'Answer a couple of quick questions and we\'ll point you to the services that fit your business - no sales call needed just to find out where to start.', 'dandt-theme' ); ?></p>
+        </div>
+
+        <div class="dandt-package-finder" data-package-finder>
+            <div class="dandt-pf-step" data-pf-step="stage">
+                <h3 class="dandt-pf-question"><?php esc_html_e( 'Where are you right now?', 'dandt-theme' ); ?></h3>
+                <div class="dandt-pf-options">
+                    <label class="dandt-pf-option"><input type="radio" name="pf-stage" value="starting"> <?php esc_html_e( 'Thinking about starting, or just started trading', 'dandt-theme' ); ?></label>
+                    <label class="dandt-pf-option"><input type="radio" name="pf-stage" value="ongoing"> <?php esc_html_e( 'Already trading, need ongoing accounting support', 'dandt-theme' ); ?></label>
+                    <label class="dandt-pf-option"><input type="radio" name="pf-stage" value="switching"> <?php esc_html_e( 'Looking to switch from my current accountant', 'dandt-theme' ); ?></label>
+                </div>
+            </div>
+
+            <div class="dandt-pf-step" data-pf-step="structure" hidden>
+                <h3 class="dandt-pf-question"><?php esc_html_e( 'What\'s your business structure?', 'dandt-theme' ); ?></h3>
+                <div class="dandt-pf-options">
+                    <label class="dandt-pf-option"><input type="radio" name="pf-structure" value="sole-trader"> <?php esc_html_e( 'Sole trader', 'dandt-theme' ); ?></label>
+                    <label class="dandt-pf-option"><input type="radio" name="pf-structure" value="limited-company"> <?php esc_html_e( 'Limited company', 'dandt-theme' ); ?></label>
+                    <label class="dandt-pf-option"><input type="radio" name="pf-structure" value="not-sure"> <?php esc_html_e( 'Not sure yet', 'dandt-theme' ); ?></label>
+                </div>
+            </div>
+
+            <div class="dandt-pf-step" data-pf-step="extras" hidden>
+                <h3 class="dandt-pf-question"><?php esc_html_e( 'Does any of this apply to you? (tick any)', 'dandt-theme' ); ?></h3>
+                <div class="dandt-pf-options">
+                    <label class="dandt-pf-option"><input type="checkbox" name="pf-extra" value="vat"> <?php esc_html_e( 'VAT registered, or close to the threshold', 'dandt-theme' ); ?></label>
+                    <label class="dandt-pf-option"><input type="checkbox" name="pf-extra" value="payroll"> <?php esc_html_e( 'I have, or I\'m about to take on, employees', 'dandt-theme' ); ?></label>
+                    <label class="dandt-pf-option"><input type="checkbox" name="pf-extra" value="management"> <?php esc_html_e( 'I want a regular view of profit and cash, not just year-end', 'dandt-theme' ); ?></label>
+                    <label class="dandt-pf-option"><input type="checkbox" name="pf-extra" value="planning"> <?php esc_html_e( 'I want help planning ahead for tax, not just filing it', 'dandt-theme' ); ?></label>
+                </div>
+            </div>
+
+            <div class="dandt-pf-results" data-pf-results hidden>
+                <h3 class="dandt-pf-question"><?php esc_html_e( 'Based on your answers', 'dandt-theme' ); ?></h3>
+                <div class="dandt-pf-results-grid" data-pf-results-grid></div>
+                <a class="dandt-btn dandt-btn-primary" href="<?php echo esc_url( home_url( '/book-a-consultation/' ) ); ?>"><?php esc_html_e( 'Book a Consultation', 'dandt-theme' ); ?></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dandt-section-tight">
+    <div class="dandt-container">
         <h2 class="dandt-h2" style="margin-bottom: 1.5rem;"><?php esc_html_e( 'What affects your quote', 'dandt-theme' ); ?></h2>
         <div class="dandt-services-grid" style="grid-template-columns: repeat(3, 1fr);">
             <?php foreach ( $factors as $factor ) : ?>
