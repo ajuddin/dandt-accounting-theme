@@ -1063,6 +1063,45 @@ h1, h2, h3, h4, p { margin: 0; }
 }
 
 /* ==========================================================================
+   Blog (Resources index and single articles)
+   ========================================================================== */
+
+.dandt-post-meta {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    margin-top: 0.5rem;
+}
+
+.pagination,
+.navigation.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2.5rem;
+}
+.pagination .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.25rem;
+    height: 2.25rem;
+    padding: 0 0.6rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border);
+    color: var(--ink-soft);
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: border-color 0.15s ease, color 0.15s ease;
+}
+.pagination .page-numbers:hover { border-color: var(--accent); color: var(--accent-ink); }
+.pagination .page-numbers.current {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-on);
+}
+.pagination .page-numbers.dots { border: none; }
+
+/* ==========================================================================
    404
    ========================================================================== */
 
