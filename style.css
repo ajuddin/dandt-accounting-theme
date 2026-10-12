@@ -588,12 +588,20 @@ h1, h2, h3, h4, p { margin: 0; }
  *
  * The whole card is one click target via a stretched-link on the title
  * anchor (`inset: 0` on its ::after resolves against the nearest positioned
- * ancestor - this card - not the anchor's own small box), so there's one
- * real link per card rather than the title and a separate "Learn More"
- * link both pointing at the same place.
+ * ancestor). That only works if nothing else between the anchor and the
+ * card is itself positioned - give the title (or the icon/body/cta) their
+ * own position:relative for z-index purposes and THEIR box becomes the
+ * containing block instead, shrinking the "whole card" link down to just
+ * that element's own small box (exactly the bug that made Learn More, the
+ * icon and the body text all unclickable - only the title text itself
+ * ever actually worked). So the gradient sits at a NEGATIVE z-index
+ * instead of 0: plain, unpositioned content naturally paints above a
+ * negative-z-index background with no stacking rules needed on the
+ * content side at all, leaving the card as the only positioned ancestor
+ * anywhere in the chain, so the stretched link correctly covers the whole
+ * card and sits above all of it.
  */
 .dandt-service-card--link { position: relative; overflow: hidden; }
-.dandt-service-card--link .dandt-service-card-title { position: relative; z-index: 2; }
 .dandt-service-card--link .dandt-service-card-title::after {
     content: '';
     position: absolute;
@@ -604,14 +612,13 @@ h1, h2, h3, h4, p { margin: 0; }
     content: '';
     position: absolute;
     inset: 0;
-    z-index: 0;
+    z-index: -1;
     background: linear-gradient(135deg, var(--accent), var(--brand-blue));
     opacity: 1;
     transition: opacity 0.25s ease;
 }
 .dandt-service-card--link:hover::before,
 .dandt-service-card--link:focus-within::before { opacity: 0; }
-.dandt-service-card--link > * { position: relative; z-index: 2; }
 .dandt-service-card--link {
     border-color: transparent;
     transform: translateY(-4px);
@@ -637,6 +644,10 @@ h1, h2, h3, h4, p { margin: 0; }
 .dandt-service-card--link:hover .dandt-body,
 .dandt-service-card--link:focus-within .dandt-body {
     color: var(--ink-soft);
+}
+.dandt-service-card--link:hover .dandt-service-card-cta,
+.dandt-service-card--link:focus-within .dandt-service-card-cta {
+    color: var(--ink);
 }
 .dandt-service-card--link .dandt-service-icon {
     background: color-mix(in srgb, var(--paper) 22%, transparent);
@@ -671,6 +682,88 @@ h1, h2, h3, h4, p { margin: 0; }
 .dandt-service-card--link:focus-within .dandt-service-card-cta svg {
     transform: translateX(3px);
 }
+
+/*
+ * "--media" card: Services hub and Who We Help, replacing the old
+ * identical-gradient-everywhere look. Colour now lives in a dedicated
+ * image panel (3 rotating gradient variants, standing in for a real photo
+ * - see dandt_brand_panel()) rather than flooding the whole card, so
+ * neighbouring cards read as distinct rather than one repeated tile. The
+ * content area stays plain white with a quiet lift on hover instead of a
+ * colour flip - simpler, and sidesteps the whole class of "text colour
+ * matches its own background" bugs the --link variant had to work around.
+ *
+ * Click target: same stretched-link mechanism as --link (title anchor's
+ * ::after, inset: 0, resolving against the card - the only positioned
+ * ancestor), but without --link's gradient pseudo there's no competing
+ * z-index to manage: nothing else in a --media card is positioned at all.
+ */
+.dandt-service-card--media {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+.dandt-service-card--media .dandt-card-media { aspect-ratio: 16 / 10; width: 100%; }
+.dandt-service-card--media .dandt-card-content {
+    padding: 1.5rem 1.75rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+}
+.dandt-service-card--media .dandt-service-card-title::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+.dandt-service-card--media:hover .dandt-card-media,
+.dandt-service-card--media:focus-within .dandt-card-media { filter: brightness(1.06); }
+.dandt-service-card--media .dandt-card-content .dandt-service-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: auto;
+    padding-top: 0.4rem;
+    border: none;
+    background: none;
+    color: var(--accent-ink);
+    font-weight: 700;
+    font-size: 0.92rem;
+}
+.dandt-service-card--media .dandt-card-content .dandt-service-card-cta svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+}
+.dandt-service-card--media:hover .dandt-card-content .dandt-service-card-cta svg,
+.dandt-service-card--media:focus-within .dandt-card-content .dandt-service-card-cta svg {
+    transform: translateX(3px);
+}
+/* Variant 1 (default, no override) is dandt-brand-panel's own brand-blue -> panel-accent-2. */
+.dandt-card-media--grad-2 .dandt-brand-panel {
+    background:
+        radial-gradient(color-mix(in srgb, var(--paper) 14%, transparent) 1.5px, transparent 1.5px),
+        linear-gradient(135deg, var(--accent), var(--brand-blue-deep));
+    background-size: 22px 22px, 100% 100%;
+}
+.dandt-card-media--grad-3 .dandt-brand-panel {
+    background:
+        radial-gradient(color-mix(in srgb, var(--paper) 14%, transparent) 1.5px, transparent 1.5px),
+        linear-gradient(135deg, var(--highlight), var(--accent-deep));
+    background-size: 22px 22px, 100% 100%;
+}
+/* Featured (first) tile per section: wider, more panoramic image, matching
+   the homepage's existing is-featured pattern for "lead item, then the rest". */
+.dandt-service-card--media.dandt-service-card--featured { grid-column: span 2; }
+.dandt-service-card--media.dandt-service-card--featured .dandt-card-media { aspect-ratio: 21 / 9; }
+.dandt-service-card--media.dandt-service-card--featured .dandt-h3 { font-size: 1.4rem; }
+@media (max-width: 620px) {
+    .dandt-service-card--media.dandt-service-card--featured { grid-column: span 1; }
+}
+
 .dandt-service-card.is-featured {
     grid-column: span 2;
     grid-row: span 2;
