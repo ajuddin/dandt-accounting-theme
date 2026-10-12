@@ -82,6 +82,24 @@ function dandt_brand_panel( $icon, $class = '' ) {
 }
 
 /**
+ * Renders a photo if one exists for the given theme-relative path, falling
+ * back to the icon brand panel otherwise - lets real photography roll out
+ * service-by-service without every slug needing one on day one.
+ *
+ * @param string $icon       Icon key from dandt_icon(), used as the fallback.
+ * @param string $photo_path Path under the theme root, e.g. '/assets/images/services/bookkeeping.webp'.
+ * @param string $alt        Alt text for the photo.
+ * @param string $class      Extra class(es) for the outer panel/image.
+ */
+function dandt_hero_media( $icon, $photo_path, $alt = '', $class = '' ) {
+    if ( $photo_path && file_exists( get_theme_file_path( $photo_path ) ) ) {
+        echo '<img src="' . esc_url( get_theme_file_uri( $photo_path ) ) . '" alt="' . esc_attr( $alt ) . '" loading="lazy" />';
+        return;
+    }
+    dandt_brand_panel( $icon, $class );
+}
+
+/**
  * One icon per service, matching its actual subject rather than reusing a
  * generic mark everywhere. Shared between single-service.php (the hero
  * banner) and page-services.php (the hub grid), so a service's icon is the
