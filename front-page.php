@@ -29,11 +29,7 @@ get_header();
         </div>
         <div class="dandt-hero-media">
             <?php /* TODO: replace with a real photo of the office or the accountant at work. */ ?>
-            <img
-                src="https://picsum.photos/seed/dandt-accounting-office/900/1125"
-                alt="<?php esc_attr_e( 'D&T Accounting office in Chelmsford, Essex', 'dandt-theme' ); ?>"
-                width="900" height="1125" loading="eager"
-            >
+            <?php dandt_brand_panel( 'building-bank' ); ?>
         </div>
     </div>
 </section>
@@ -136,11 +132,8 @@ get_header();
     <div class="dandt-container">
         <div class="dandt-feature-row dandt-reveal">
             <div class="dandt-feature-media">
-                <img
-                    src="https://picsum.photos/seed/dandt-accountant-call/800/600"
-                    alt="<?php esc_attr_e( 'An accountant on a phone call with a client', 'dandt-theme' ); ?>"
-                    width="800" height="600" loading="lazy"
-                >
+                <?php /* TODO: replace with a real photo once available. */ ?>
+                <?php dandt_brand_panel( 'phone' ); ?>
             </div>
             <div class="dandt-feature-copy">
                 <h2 class="dandt-h2"><?php esc_html_e( 'One point of contact, not a call queue', 'dandt-theme' ); ?></h2>
@@ -150,11 +143,8 @@ get_header();
 
         <div class="dandt-feature-row is-reversed dandt-reveal">
             <div class="dandt-feature-media">
-                <img
-                    src="https://picsum.photos/seed/dandt-deadline-calendar/800/600"
-                    alt="<?php esc_attr_e( 'A desk calendar used to track filing deadlines', 'dandt-theme' ); ?>"
-                    width="800" height="600" loading="lazy"
-                >
+                <?php /* TODO: replace with a real photo once available. */ ?>
+                <?php dandt_brand_panel( 'calendar' ); ?>
             </div>
             <div class="dandt-feature-copy">
                 <h2 class="dandt-h2"><?php esc_html_e( 'Deadlines handled before they are urgent', 'dandt-theme' ); ?></h2>

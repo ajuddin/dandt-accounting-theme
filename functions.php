@@ -10,7 +10,16 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'DANDT_VERSION', '1.1.0' );
+/*
+ * Bump this on every commit that touches style.css or assets/js/main.js.
+ * It's the cache-busting query string on the enqueued URL - leaving it
+ * unchanged means visitors' browsers keep serving their own locally
+ * cached copy indefinitely, even after the server-side file changes.
+ * (This is exactly what caused the broken giant-logo render reported
+ * after the header rework - four CSS-touching commits shipped after the
+ * version was last bumped.)
+ */
+define( 'DANDT_VERSION', '1.2.0' );
 
 /**
  * Theme setup: menus, image sizes, title-tag support.

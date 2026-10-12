@@ -40,12 +40,17 @@ get_header();
     <div class="dandt-container">
         <?php /* TODO: real name, role, bio and photo. Duplicate this block for a second partner. */ ?>
         <div class="dandt-profile dandt-reveal">
-            <div class="dandt-profile-photo">
-                <img
-                    src="https://picsum.photos/seed/dandt-accountant-profile/480/480"
-                    alt="<?php esc_attr_e( '[Accountant name] - photo to be added', 'dandt-theme' ); ?>"
-                    width="480" height="480" loading="lazy"
-                >
+            <?php
+            /*
+             * A stock photo of a stranger standing in for a specific named
+             * person would be misleading, not just low-quality - this uses
+             * the same honest "pending" treatment as the testimonial slot
+             * instead (dashed border, muted icon) rather than the confident
+             * gradient brand panel used elsewhere on the site.
+             */
+            ?>
+            <div class="dandt-profile-photo is-pending">
+                <?php dandt_icon( 'user', 'dandt-profile-photo-icon' ); ?>
             </div>
             <div class="dandt-profile-copy">
                 <p class="dandt-profile-role"><?php esc_html_e( '[Role - e.g. Director, Chartered Accountant]', 'dandt-theme' ); ?></p>

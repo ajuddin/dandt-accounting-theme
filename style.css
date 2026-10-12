@@ -479,6 +479,41 @@ h1, h2, h3, h4, p { margin: 0; }
 }
 .dandt-hero-media img { width: 100%; height: 100%; object-fit: cover; }
 
+/*
+ * Stands in for a photo where no real, verified photography exists yet -
+ * see dandt_brand_panel() in inc/icons.php for why this exists instead of
+ * another stock-photo gamble. Dot-grid texture is a cheap radial-gradient
+ * tile, no image asset; ring is a translucent circle so it reads as a
+ * deliberate mark, not an empty frame waiting for content.
+ */
+.dandt-brand-panel {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(color-mix(in srgb, var(--paper) 14%, transparent) 1.5px, transparent 1.5px),
+        linear-gradient(135deg, var(--brand-blue), var(--panel-accent-2));
+    background-size: 22px 22px, 100% 100%;
+}
+.dandt-brand-panel-ring {
+    width: 34%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--paper) 16%, transparent);
+    border: 1px solid color-mix(in srgb, var(--paper) 28%, transparent);
+}
+.dandt-brand-panel-icon {
+    width: 46%;
+    height: 46%;
+    color: var(--paper);
+    stroke-width: 1.25;
+}
+
 @media (max-width: 900px) {
     .dandt-hero-grid { grid-template-columns: 1fr; }
     .dandt-hero-media { aspect-ratio: 16 / 10; order: -1; }
@@ -728,6 +763,17 @@ h1, h2, h3, h4, p { margin: 0; }
     background: var(--paper-dim);
 }
 .dandt-profile-photo img { width: 100%; height: 100%; object-fit: cover; }
+/* A stock photo of a stranger standing in for a specific named person would
+   be misleading, not just low-quality - this reads as an obvious "pending"
+   placeholder instead of a finished photo. */
+.dandt-profile-photo.is-pending {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed var(--border);
+    background: var(--surface);
+}
+.dandt-profile-photo-icon { width: 34%; height: 34%; color: var(--border); stroke-width: 1.25; }
 .dandt-profile-copy > * + * { margin-top: 0.75rem; }
 .dandt-profile-role { color: var(--accent-ink); font-weight: 700; font-size: 0.9rem; }
 

@@ -35,6 +35,7 @@ function dandt_icon( $name, $class = '' ) {
         'receipt'       => '<path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2" /><path d="M14 8h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5m2 0v1.5m0 -9v1.5" />',
         'users'         => '<path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />',
         'calendar'      => '<path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12" /><path d="M16 3l0 4" /><path d="M8 3l0 4" /><path d="M4 11l16 0" /><path d="M8 15h2v2h-2l0 -2" />',
+        'user'          => '<path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />',
     );
 
     if ( ! isset( $paths[ $name ] ) ) {
@@ -44,4 +45,27 @@ function dandt_icon( $name, $class = '' ) {
     echo '<svg xmlns="http://www.w3.org/2000/svg" class="' . esc_attr( $class ) . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
         . $paths[ $name ] // phpcs:ignore -- static vendored SVG markup, not user input.
         . '</svg>';
+}
+
+/**
+ * A gradient brand panel with a large centred icon, standing in for a photo
+ * where no real, verified photography exists yet.
+ *
+ * Deliberately not a stock photo: an earlier pass sourcing "relevant"
+ * open-license images turned up results from the same uploader where one
+ * file was mislabeled entirely (a filename claiming "bright office with
+ * coffee" was actually a staged scene with handcuffs and a toy shopping
+ * cart of cash) - not a risk worth taking on a client-facing site. This
+ * draws only from the theme's own brand gradient and the already-vetted
+ * icon set, so there's nothing left to verify.
+ *
+ * @param string $icon  Icon key from dandt_icon().
+ * @param string $class Extra class(es) for the outer panel.
+ */
+function dandt_brand_panel( $icon, $class = '' ) {
+    echo '<div class="dandt-brand-panel ' . esc_attr( $class ) . '">';
+    echo '<span class="dandt-brand-panel-ring">';
+    dandt_icon( $icon, 'dandt-brand-panel-icon' );
+    echo '</span>';
+    echo '</div>';
 }
