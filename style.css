@@ -580,10 +580,11 @@ h1, h2, h3, h4, p { margin: 0; }
  * "--link" variant: used only where the whole card is genuinely one
  * destination (Services hub, Who We Help hub, Resources index) - not the
  * plain info cards on the homepage, which have no link and keep the quieter
- * lift above instead. Hovering (or focusing, for keyboard users) flips the
- * card to the brand gradient rather than just nudging a border colour -
- * a bolder, single moment of colour reserved for "click here", rather than
- * spread thin across every card on the page.
+ * lift above instead. The brand gradient is the card's resting state - a
+ * bolder, confident look reserved for "this is clickable" - and hovering
+ * (or focusing, for keyboard users) settles it back to a plain card, so the
+ * moment of change still reads as deliberate feedback, just in the other
+ * direction.
  *
  * The whole card is one click target via a stretched-link on the title
  * anchor (`inset: 0` on its ::after resolves against the nearest positioned
@@ -605,55 +606,65 @@ h1, h2, h3, h4, p { margin: 0; }
     inset: 0;
     z-index: 0;
     background: linear-gradient(135deg, var(--accent), var(--brand-blue));
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.25s ease;
 }
 .dandt-service-card--link:hover::before,
-.dandt-service-card--link:focus-within::before { opacity: 1; }
+.dandt-service-card--link:focus-within::before { opacity: 0; }
 .dandt-service-card--link > * { position: relative; z-index: 2; }
-.dandt-service-card--link:hover,
-.dandt-service-card--link:focus-within {
+.dandt-service-card--link {
     border-color: transparent;
     transform: translateY(-4px);
     box-shadow: 0 16px 36px -12px color-mix(in srgb, var(--accent) 45%, transparent);
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.dandt-service-card--link:hover,
+.dandt-service-card--link:focus-within {
+    border-color: var(--border);
+    transform: none;
+    box-shadow: none;
 }
 .dandt-service-card--link .dandt-service-card-title,
 .dandt-service-card--link .dandt-body,
 .dandt-service-card--link .dandt-service-card-cta {
+    color: var(--accent-on);
     transition: color 0.2s ease;
 }
 .dandt-service-card--link:hover .dandt-service-card-title,
-.dandt-service-card--link:focus-within .dandt-service-card-title,
+.dandt-service-card--link:focus-within .dandt-service-card-title {
+    color: var(--ink);
+}
 .dandt-service-card--link:hover .dandt-body,
-.dandt-service-card--link:focus-within .dandt-body,
-.dandt-service-card--link:hover .dandt-service-card-cta,
-.dandt-service-card--link:focus-within .dandt-service-card-cta {
-    color: var(--accent-on);
+.dandt-service-card--link:focus-within .dandt-body {
+    color: var(--ink-soft);
 }
 .dandt-service-card--link .dandt-service-icon {
+    background: color-mix(in srgb, var(--paper) 22%, transparent);
+    color: var(--accent-on);
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 .dandt-service-card--link:hover .dandt-service-icon,
 .dandt-service-card--link:focus-within .dandt-service-icon {
-    background: color-mix(in srgb, var(--paper) 22%, transparent);
-    color: var(--accent-on);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--accent);
 }
 .dandt-service-card--link .dandt-service-card-cta {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    border: 1px solid var(--border);
+    white-space: nowrap;
+    border: 1px solid color-mix(in srgb, var(--paper) 45%, transparent);
+    background: color-mix(in srgb, var(--paper) 12%, transparent);
     border-radius: var(--radius-pill);
     padding: 0.6rem 1.2rem;
     font-weight: 700;
     font-size: 0.9rem;
-    color: var(--ink);
     transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 }
 .dandt-service-card--link:hover .dandt-service-card-cta,
 .dandt-service-card--link:focus-within .dandt-service-card-cta {
-    border-color: color-mix(in srgb, var(--paper) 45%, transparent);
-    background: color-mix(in srgb, var(--paper) 12%, transparent);
+    border-color: var(--border);
+    background: transparent;
 }
 .dandt-service-card--link .dandt-service-card-cta svg { transition: transform 0.2s ease; }
 .dandt-service-card--link:hover .dandt-service-card-cta svg,
