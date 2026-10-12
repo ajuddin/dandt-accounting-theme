@@ -157,7 +157,13 @@ get_header();
             </div>
             <div class="dandt-feature-copy">
                 <h2 class="dandt-h2"><?php esc_html_e( 'Deadlines handled before they are urgent', 'dandt-theme' ); ?></h2>
-                <p class="dandt-body"><?php esc_html_e( 'VAT, payroll and filing dates are tracked for you, so a deadline never becomes a last-minute phone call.', 'dandt-theme' ); ?></p>
+                <p class="dandt-body"><?php esc_html_e( 'Every client gets a deadline calendar built from their own filing obligations, not a generic checklist - so a date shows up on our side with enough notice to act on, not a last-minute phone call.', 'dandt-theme' ); ?></p>
+                <ul class="dandt-feature-list">
+                    <li><?php dandt_icon( 'check' ); ?> <span><strong><?php esc_html_e( 'VAT returns', 'dandt-theme' ); ?></strong> &mdash; <?php esc_html_e( 'due one month and seven days after each quarter ends.', 'dandt-theme' ); ?></span></li>
+                    <li><?php dandt_icon( 'check' ); ?> <span><strong><?php esc_html_e( 'Self Assessment', 'dandt-theme' ); ?></strong> &mdash; <?php esc_html_e( 'online returns due by 31 January.', 'dandt-theme' ); ?></span></li>
+                    <li><?php dandt_icon( 'check' ); ?> <span><strong><?php esc_html_e( 'Company accounts &amp; Corporation Tax', 'dandt-theme' ); ?></strong> &mdash; <?php esc_html_e( 'accounts filed with Companies House nine months after your year end; Corporation Tax due nine months and a day after.', 'dandt-theme' ); ?></span></li>
+                    <li><?php dandt_icon( 'check' ); ?> <span><strong><?php esc_html_e( 'Payroll', 'dandt-theme' ); ?></strong> &mdash; <?php esc_html_e( 'PAYE reported to HMRC on or before every payday.', 'dandt-theme' ); ?></span></li>
+                </ul>
             </div>
         </div>
     </div>
