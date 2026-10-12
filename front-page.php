@@ -28,8 +28,11 @@ get_header();
             </div>
         </div>
         <div class="dandt-hero-media">
-            <?php /* TODO: replace with a real photo of the office or the accountant at work. */ ?>
-            <?php dandt_brand_panel( 'building-bank' ); ?>
+            <img
+                src="<?php echo esc_url( get_theme_file_uri( '/assets/images/home-hero.webp' ) ); ?>"
+                alt="<?php esc_attr_e( 'Working on a laptop at a tidy desk with a notebook and coffee', 'dandt-theme' ); ?>"
+                width="1000" height="1250" loading="eager"
+            >
         </div>
     </div>
 </section>
@@ -132,8 +135,11 @@ get_header();
     <div class="dandt-container">
         <div class="dandt-feature-row dandt-reveal">
             <div class="dandt-feature-media">
-                <?php /* TODO: replace with a real photo once available. */ ?>
-                <?php dandt_brand_panel( 'phone' ); ?>
+                <img
+                    src="<?php echo esc_url( get_theme_file_uri( '/assets/images/feature-direct-contact.webp' ) ); ?>"
+                    alt="<?php esc_attr_e( 'Taking a business support call on a mobile phone', 'dandt-theme' ); ?>"
+                    width="715" height="531" loading="lazy"
+                >
             </div>
             <div class="dandt-feature-copy">
                 <h2 class="dandt-h2"><?php esc_html_e( 'One point of contact, not a call queue', 'dandt-theme' ); ?></h2>
@@ -143,8 +149,11 @@ get_header();
 
         <div class="dandt-feature-row is-reversed dandt-reveal">
             <div class="dandt-feature-media">
-                <?php /* TODO: replace with a real photo once available. */ ?>
-                <?php dandt_brand_panel( 'calendar' ); ?>
+                <img
+                    src="<?php echo esc_url( get_theme_file_uri( '/assets/images/feature-deadlines.webp' ) ); ?>"
+                    alt="<?php esc_attr_e( 'A desk planner marked with filing deadlines and a reminder note', 'dandt-theme' ); ?>"
+                    width="715" height="539" loading="lazy"
+                >
             </div>
             <div class="dandt-feature-copy">
                 <h2 class="dandt-h2"><?php esc_html_e( 'Deadlines handled before they are urgent', 'dandt-theme' ); ?></h2>
