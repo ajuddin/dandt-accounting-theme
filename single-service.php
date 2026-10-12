@@ -18,6 +18,11 @@ get_header();
 while ( have_posts() ) :
     the_post();
     $hero_icon = dandt_service_icon( get_post_field( 'post_name' ) );
+    foreach ( dandt_service_schema( get_post() ) as $schema_block ) :
+        ?>
+        <script type="application/ld+json"><?php echo wp_json_encode( $schema_block ); ?></script>
+        <?php
+    endforeach;
     ?>
     <section class="dandt-section-tight">
         <div class="dandt-container dandt-service-hero">
