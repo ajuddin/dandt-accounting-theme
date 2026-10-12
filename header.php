@@ -53,15 +53,28 @@ $dandt = dandt_business_details();
 <header class="dandt-header" id="dandt-header">
     <div class="dandt-container dandt-header-inner">
         <a class="dandt-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-            <?php /* The actual production logo file, copied as-is rather than recreated. */ ?>
+            <?php
+            /*
+             * The full production logo file bakes the icon, "D&T Accounting"
+             * and the tagline into one wide raster image - sized for a
+             * standalone lockup, not a compact header slot, which is why it
+             * read small and the separately-added tagline text sat dangling
+             * next to it with no visual relationship. Using just the cropped
+             * icon mark (assets/brand/icon.png) here and setting the
+             * wordmark as live text instead: it scales cleanly at any size,
+             * sizes independently of the icon, and matches the site's own
+             * type rather than whatever weight happened to be baked into
+             * the image. The tagline moves to the footer instead of being
+             * discarded - see footer.php.
+             */
+            ?>
             <img
-                class="dandt-logo-img"
-                src="<?php echo esc_url( get_theme_file_uri( '/assets/brand/logo.svg' ) ); ?>"
-                alt="<?php bloginfo( 'name' ); ?>"
-                width="260" height="73"
+                class="dandt-logo-icon"
+                src="<?php echo esc_url( get_theme_file_uri( '/assets/brand/icon.png' ) ); ?>"
+                alt=""
+                width="270" height="240"
             >
-            <?php /* Real tagline from the production logo asset, not invented copy. */ ?>
-            <span class="dandt-logo-tagline"><?php esc_html_e( 'Your Partner in Progress', 'dandt-theme' ); ?></span>
+            <span class="dandt-logo-word"><?php bloginfo( 'name' ); ?></span>
         </a>
 
         <nav class="dandt-nav" aria-label="<?php esc_attr_e( 'Primary', 'dandt-theme' ); ?>">

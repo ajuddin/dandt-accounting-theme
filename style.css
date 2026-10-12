@@ -72,6 +72,9 @@ Text Domain: dandt-theme
      */
     --brand-blue: #1287ca;
     --brand-blue-deep: #16222b;
+    /* Darkened for use as text on a light ground - --brand-blue itself is
+       ~3.7:1 against --paper, short of WCAG AA's 4.5:1 for normal text. */
+    --brand-blue-ink: #0c6690;
 
     /*
      * Second stop for the dark-panel gradients (CTA band, featured service
@@ -106,6 +109,7 @@ Text Domain: dandt-theme
         --highlight: #ffb966;
         --brand-blue: #4fb8ef;
         --brand-blue-deep: #0d161c;
+        --brand-blue-ink: #4fb8ef;
         --panel-accent-2: #c3e4f5;
         --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px -16px rgb(0 0 0 / 0.6);
     }
@@ -117,6 +121,13 @@ Text Domain: dandt-theme
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+}
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
 body {
     margin: 0;
     font-family: var(--font-body);
@@ -179,6 +190,7 @@ h1, h2, h3, h4, p { margin: 0; }
     letter-spacing: -0.02em;
     line-height: 1.08;
     font-size: clamp(2rem, 1.1rem + 3.4vw, 3.25rem);
+    text-wrap: balance;
 }
 
 .dandt-h2 {
@@ -187,6 +199,7 @@ h1, h2, h3, h4, p { margin: 0; }
     letter-spacing: -0.01em;
     line-height: 1.15;
     font-size: clamp(1.6rem, 1.1rem + 1.8vw, 2.25rem);
+    text-wrap: balance;
 }
 
 .dandt-h3 {
@@ -195,6 +208,7 @@ h1, h2, h3, h4, p { margin: 0; }
     letter-spacing: -0.01em;
     line-height: 1.25;
     font-size: 1.25rem;
+    text-wrap: balance;
 }
 
 .dandt-lede {
@@ -267,43 +281,36 @@ h1, h2, h3, h4, p { margin: 0; }
     padding: 0.75rem 0;
 }
 
+/*
+ * The icon is cropped from the production logo file (assets/brand/icon.png)
+ * and already full colour on a transparent ground, so it needs no dark-mode
+ * filter - it reads fine on both a light and a dark header. The wordmark is
+ * live text, not part of the image: it sizes independently of the icon,
+ * uses the site's own Lato weight, and automatically follows --ink between
+ * light and dark mode like every other heading, with no raster-inversion
+ * trick required.
+ */
 .dandt-logo {
     display: flex;
     align-items: center;
-    gap: 0.85rem;
+    gap: 0.65rem;
 }
-.dandt-logo-img {
-    height: 60px;
+.dandt-logo-icon {
+    height: 58px;
     width: auto;
 }
-.dandt-logo-tagline {
-    display: none;
-    font-size: 0.82rem;
-    font-style: italic;
-    color: var(--ink-soft);
-    border-left: 1px solid var(--border);
-    padding-left: 0.85rem;
+.dandt-logo-word {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.6rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
     white-space: nowrap;
-}
-@media (min-width: 1240px) {
-    .dandt-logo-tagline { display: inline-block; }
-}
-
-/*
- * The production logo is one flat image: a blue gradient icon plus a dark
- * grey wordmark and tagline, with no dark-mode variant of its own. A plain
- * invert() would flip the text to readable light grey but also flip the
- * blue icon to orange - off-brand. invert() + hue-rotate(180deg) is the
- * standard "smart invert" combination: it still lightens the dark text
- * (near-zero saturation, so the hue rotation does nothing to it) while
- * rotating the icon's hue back close to its original blue.
- */
-@media (prefers-color-scheme: dark) {
-    .dandt-logo-img { filter: invert(1) hue-rotate(180deg); }
 }
 @media (max-width: 900px) {
     .dandt-header-inner { min-height: 72px; }
-    .dandt-logo-img { height: 48px; }
+    .dandt-logo-icon { height: 42px; }
+    .dandt-logo-word { font-size: 1.2rem; }
 }
 
 .dandt-nav {
@@ -456,7 +463,7 @@ h1, h2, h3, h4, p { margin: 0; }
     font-weight: 700;
     font-size: 0.85rem;
     letter-spacing: 0.04em;
-    color: var(--brand-blue);
+    color: var(--brand-blue-ink);
 }
 .dandt-hero-copy > * + * { margin-top: 1.25rem; }
 .dandt-hero-ctas {
@@ -525,6 +532,12 @@ h1, h2, h3, h4, p { margin: 0; }
     border: 1px solid var(--border);
     border-radius: var(--radius-card);
     padding: 1.75rem;
+    transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+.dandt-service-card:hover {
+    box-shadow: var(--shadow-card);
+    border-color: color-mix(in srgb, var(--accent) 25%, var(--border));
+    transform: translateY(-3px);
 }
 .dandt-service-card > * + * { margin-top: 0.75rem; }
 .dandt-service-card.is-featured {
@@ -752,12 +765,6 @@ h1, h2, h3, h4, p { margin: 0; }
     color: var(--ink);
 }
 .dandt-field select { appearance: auto; }
-.dandt-field input:focus,
-.dandt-field textarea:focus,
-.dandt-field select:focus {
-    outline: 2px solid var(--accent);
-    outline-offset: 1px;
-}
 .dandt-field-error { color: #b42318; font-size: 0.85rem; }
 .dandt-form-status { padding: 0.9rem 1rem; border-radius: 10px; font-size: 0.9rem; }
 .dandt-form-status.is-success { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent-ink); }
@@ -787,6 +794,12 @@ h1, h2, h3, h4, p { margin: 0; }
 }
 .dandt-footer-col > * + * { margin-top: 0.65rem; }
 .dandt-footer-col h3 { font-size: 0.85rem; color: var(--ink); margin-bottom: 0.75rem; }
+.dandt-footer-tagline {
+    font-style: italic;
+    color: var(--brand-blue-ink);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
 .dandt-footer-bottom {
     display: flex;
     justify-content: space-between;
