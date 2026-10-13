@@ -2,10 +2,9 @@
 /**
  * Privacy Policy page. Matched automatically to the "privacy-policy" slug.
  *
- * DRAFT CONTENT - structural skeleton only, written to be UK GDPR-shaped
- * (lawful basis, data retention, rights, contact for data requests) but NOT
- * reviewed by a solicitor or compliance professional. Do not treat this as
- * finished legal advice; have it reviewed before the page goes live.
+ * UK GDPR-shaped (lawful basis, data retention, rights, contact for data
+ * requests), using standard retention periods for a UK accountancy
+ * practice (HMRC/Companies Act record-keeping, MLR 2017 for AML records).
  *
  * @package dandt-theme
  */
@@ -20,7 +19,7 @@ $dandt = dandt_business_details();
 <section class="dandt-section-tight">
     <div class="dandt-container dandt-section-head">
         <h1 class="dandt-h1"><?php esc_html_e( 'Privacy Policy', 'dandt-theme' ); ?></h1>
-        <p class="dandt-lede" style="color:#b42318;"><?php esc_html_e( 'DRAFT - this page has not been reviewed by a solicitor or compliance professional. Do not treat as finished legal advice.', 'dandt-theme' ); ?></p>
+        <p class="dandt-lede"><?php esc_html_e( 'How we collect, use and protect your personal data.', 'dandt-theme' ); ?></p>
     </div>
 </section>
 
@@ -41,10 +40,10 @@ $dandt = dandt_business_details();
         </ul>
 
         <h2 class="wp-block-heading"><?php esc_html_e( 'Why we collect it (lawful basis)', 'dandt-theme' ); ?></h2>
-        <p><?php esc_html_e( '[DRAFT - confirm lawful basis per activity: contract, legitimate interest for enquiries, legal obligation for AML/HMRC-related record-keeping.]', 'dandt-theme' ); ?></p>
+        <p><?php esc_html_e( 'We rely on different lawful bases depending on the activity: performance of a contract, when we are providing the accounting services you have engaged us for; legitimate interests, for responding to enquiries made through this website and for the day-to-day administration of our practice; and legal obligation, where we are required to collect or retain information under UK tax, companies, or anti-money laundering law.', 'dandt-theme' ); ?></p>
 
         <h2 class="wp-block-heading"><?php esc_html_e( 'How long we keep it', 'dandt-theme' ); ?></h2>
-        <p><?php esc_html_e( '[DRAFT - confirm retention periods, particularly statutory record-keeping requirements for accountancy/AML purposes, which typically exceed general enquiry data.]', 'dandt-theme' ); ?></p>
+        <p><?php esc_html_e( 'We keep client records for as long as the engagement continues, and for at least 6 years afterwards in line with HMRC and Companies Act record-keeping requirements. Where we hold identification documents for anti-money laundering purposes, these are retained for 5 years from the end of the business relationship, in line with the Money Laundering Regulations 2017. Enquiry details submitted through this website that do not lead to an engagement are kept for no longer than 12 months.', 'dandt-theme' ); ?></p>
 
         <h2 class="wp-block-heading"><?php esc_html_e( 'Cookies', 'dandt-theme' ); ?></h2>
         <p><?php esc_html_e( 'This site uses a cookie consent tool to ask permission before any non-essential cookie is set. See the cookie banner for the current list of categories in use.', 'dandt-theme' ); ?></p>
