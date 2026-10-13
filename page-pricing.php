@@ -85,7 +85,7 @@ $factors = array(
 <section class="dandt-section-tight">
     <div class="dandt-container">
         <h2 class="dandt-h2" style="margin-bottom: 1.5rem;"><?php esc_html_e( 'What affects your quote', 'dandt-theme' ); ?></h2>
-        <div class="dandt-services-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="dandt-services-grid">
             <?php foreach ( $factors as $factor ) : ?>
                 <article class="dandt-service-card dandt-reveal">
                     <h3 class="dandt-h3"><?php echo esc_html( $factor[0] ); ?></h3>

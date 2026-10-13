@@ -24,7 +24,7 @@ get_header();
 <section class="dandt-section-tight">
     <div class="dandt-container">
         <?php if ( have_posts() ) : ?>
-            <div class="dandt-services-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="dandt-services-grid">
                 <?php
                 while ( have_posts() ) :
                     the_post();

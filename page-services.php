@@ -57,7 +57,7 @@ $groups = get_terms( array(
         <section class="dandt-section-tight">
             <div class="dandt-container">
                 <h2 class="dandt-h2" style="margin-bottom: 1.5rem;"><?php echo esc_html( $group->name ); ?></h2>
-                <div class="dandt-services-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="dandt-services-grid">
                     <?php foreach ( $services as $i => $service ) :
                         $is_featured = ( 0 === $i );
                         $grad_class  = 'dandt-card-media--grad-' . ( ( $i % 3 ) + 1 );

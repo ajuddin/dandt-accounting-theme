@@ -32,7 +32,7 @@ $audiences = get_posts( array(
         <?php if ( ! $audiences ) : ?>
             <p class="dandt-body"><?php esc_html_e( 'These pages are being added. Check back shortly, or get in touch directly.', 'dandt-theme' ); ?></p>
         <?php else : ?>
-            <div class="dandt-services-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="dandt-services-grid">
                 <?php foreach ( $audiences as $i => $audience ) :
                     $is_featured = ( 0 === $i );
                     $grad_class  = 'dandt-card-media--grad-' . ( ( $i % 3 ) + 1 );

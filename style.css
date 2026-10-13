@@ -533,13 +533,20 @@ h1, h2, h3, h4, p { margin: 0; }
 .dandt-section-head > * + * { margin-top: 0.85rem; }
 
 /* ==========================================================================
-   Services grid (4 items: 1 featured + 3 standard, not 3 equal cards)
+   Services grid - shared 3-equal-column grid (Services hub, Who We Help
+   hub, Resources index, Pricing factors)
    ========================================================================== */
 
 .dandt-services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
+}
+@media (max-width: 900px) {
+    .dandt-services-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 620px) {
+    .dandt-services-grid { grid-template-columns: 1fr; }
 }
 .dandt-service-card {
     background: var(--surface);
