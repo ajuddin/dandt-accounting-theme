@@ -765,26 +765,6 @@ h1, h2, h3, h4, p { margin: 0; }
     .dandt-service-card--media.dandt-service-card--featured { grid-column: span 1; }
 }
 
-.dandt-service-card.is-featured {
-    grid-column: span 2;
-    grid-row: span 2;
-    background: linear-gradient(135deg, var(--accent-deep), var(--panel-accent-2));
-    color: var(--paper);
-    border-color: var(--accent-deep);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /*
-     * Without this, flex's default align-items: stretch pulls the "Learn
-     * More" button to the card's full width (its only other child, the
-     * copy block above, sizes independently via its own width:auto) -
-     * combined with the old sizeless icon bug, that's what made the arrow
-     * icon look like a giant image. Buttons should stay content-sized.
-     */
-    align-items: flex-start;
-    padding: 2.25rem;
-}
-.dandt-service-card.is-featured .dandt-body { color: color-mix(in srgb, var(--paper) 72%, transparent); }
 .dandt-service-icon {
     width: 42px;
     height: 42px;
@@ -794,19 +774,88 @@ h1, h2, h3, h4, p { margin: 0; }
     display: grid;
     place-items: center;
 }
-.dandt-service-card.is-featured .dandt-service-icon {
-    background: color-mix(in srgb, var(--accent) 24%, transparent);
-    color: var(--accent-ink);
-}
 .dandt-service-icon svg { width: 22px; height: 22px; }
 
-@media (max-width: 900px) {
-    .dandt-services-grid { grid-template-columns: 1fr 1fr; }
-    .dandt-service-card.is-featured { grid-column: span 2; grid-row: auto; }
+/*
+ * Homepage services section: a full-width featured Company Accounts card
+ * (copy left, photo right) above three equal supporting cards - replaces a
+ * CSS-grid span/row combination that, with exactly 4 items in a 3-column
+ * grid, left the 4th card (Bookkeeping) alone on its own row with empty
+ * space beside it.
+ */
+.dandt-service-feature {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: stretch;
+    background: linear-gradient(135deg, var(--accent-deep), var(--panel-accent-2));
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    min-height: 340px;
 }
-@media (max-width: 620px) {
-    .dandt-services-grid { grid-template-columns: 1fr; }
-    .dandt-service-card.is-featured { grid-column: span 1; }
+.dandt-service-feature-content {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.9rem;
+    color: var(--paper);
+}
+.dandt-service-feature-eyebrow {
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--paper) 70%, var(--accent));
+}
+.dandt-service-feature-content .dandt-h3 { color: var(--paper); font-size: 1.6rem; }
+.dandt-service-feature-content .dandt-body {
+    color: color-mix(in srgb, var(--paper) 78%, transparent);
+    max-width: 46ch;
+}
+.dandt-service-feature-content .dandt-btn-primary { align-self: flex-start; margin-top: 0.5rem; }
+.dandt-service-feature-media { position: relative; min-height: 220px; }
+.dandt-service-feature-media img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+/* Subtle seam between the dark content panel and the photograph. */
+.dandt-service-feature-media::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--accent-deep) 55%, transparent), transparent 18%);
+    pointer-events: none;
+}
+
+.dandt-service-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+    align-items: stretch;
+}
+.dandt-service-row .dandt-service-card { display: flex; flex-direction: column; height: 100%; }
+.dandt-service-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: auto;
+    padding-top: 0.75rem;
+    color: var(--accent-ink);
+    font-weight: 700;
+    font-size: 0.92rem;
+}
+.dandt-service-card-link svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
+.dandt-service-card-link:hover svg,
+.dandt-service-card-link:focus-visible svg { transform: translateX(3px); }
+
+@media (max-width: 900px) {
+    .dandt-service-feature { grid-template-columns: 1fr; min-height: 0; }
+    .dandt-service-feature-media { min-height: 220px; order: -1; }
+    .dandt-service-feature-media::before {
+        background: linear-gradient(180deg, transparent 70%, color-mix(in srgb, var(--accent-deep) 60%, transparent));
+    }
+    .dandt-service-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+    .dandt-service-feature-content { padding: 1.75rem; }
 }
 
 /* ==========================================================================

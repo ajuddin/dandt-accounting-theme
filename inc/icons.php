@@ -91,10 +91,11 @@ function dandt_brand_panel( $icon, $class = '' ) {
  * @param string $photo_path Path under the theme root, e.g. '/assets/images/services/bookkeeping.webp'.
  * @param string $alt        Alt text for the photo.
  * @param string $class      Extra class(es) for the outer panel/image.
+ * @param string $loading    Image loading attribute - 'lazy' (default) or 'eager' for above-the-fold placements.
  */
-function dandt_hero_media( $icon, $photo_path, $alt = '', $class = '' ) {
+function dandt_hero_media( $icon, $photo_path, $alt = '', $class = '', $loading = 'lazy' ) {
     if ( $photo_path && file_exists( get_theme_file_path( $photo_path ) ) ) {
-        echo '<img src="' . esc_url( get_theme_file_uri( $photo_path ) ) . '" alt="' . esc_attr( $alt ) . '" loading="lazy" />';
+        echo '<img src="' . esc_url( get_theme_file_uri( $photo_path ) ) . '" alt="' . esc_attr( $alt ) . '" loading="' . esc_attr( $loading ) . '" />';
         return;
     }
     dandt_brand_panel( $icon, $class );

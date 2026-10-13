@@ -53,35 +53,58 @@ get_header();
             <p class="dandt-body"><?php esc_html_e( 'Core compliance work and the day-to-day numbers, covered.', 'dandt-theme' ); ?></p>
         </div>
 
-        <div class="dandt-services-grid">
-            <article class="dandt-service-card is-featured dandt-reveal">
-                <div>
-                    <div class="dandt-service-icon"><?php dandt_icon( 'briefcase' ); ?></div>
-                    <h3 class="dandt-h3"><?php esc_html_e( 'Company Accounts', 'dandt-theme' ); ?></h3>
-                    <p class="dandt-body"><?php esc_html_e( 'Annual accounts prepared and filed on time, with figures you actually understand when we walk you through them.', 'dandt-theme' ); ?></p>
-                </div>
-                <a class="dandt-btn dandt-btn-outline" href="<?php echo esc_url( home_url( '/services/#company-accounts' ) ); ?>">
-                    <?php esc_html_e( 'Learn More', 'dandt-theme' ); ?>
+        <div class="dandt-service-feature dandt-reveal">
+            <div class="dandt-service-feature-content">
+                <p class="dandt-service-feature-eyebrow"><?php esc_html_e( 'Featured Service', 'dandt-theme' ); ?></p>
+                <h3 class="dandt-h3"><?php esc_html_e( 'Company Accounts', 'dandt-theme' ); ?></h3>
+                <p class="dandt-body"><?php esc_html_e( 'Annual accounts prepared and filed on time, with figures you actually understand when we walk you through them.', 'dandt-theme' ); ?></p>
+                <a class="dandt-btn dandt-btn-primary" href="<?php echo esc_url( home_url( '/services/limited-company-accounting/' ) ); ?>">
+                    <?php esc_html_e( 'Explore Company Accounts', 'dandt-theme' ); ?>
                     <?php dandt_icon( 'chevron-right' ); ?>
                 </a>
-            </article>
+            </div>
+            <div class="dandt-service-feature-media">
+                <?php
+                dandt_hero_media(
+                    'briefcase',
+                    '/assets/images/company-accounts-feature.webp',
+                    __( 'Accountant reviewing annual company accounts and financial statements', 'dandt-theme' ),
+                    '',
+                    'eager'
+                );
+                ?>
+            </div>
+        </div>
 
+        <div class="dandt-service-row">
             <article class="dandt-service-card dandt-reveal">
                 <div class="dandt-service-icon"><?php dandt_icon( 'receipt' ); ?></div>
                 <h3 class="dandt-h3"><?php esc_html_e( 'VAT Returns', 'dandt-theme' ); ?></h3>
                 <p class="dandt-body"><?php esc_html_e( 'Quarterly returns filed correctly and on time, with Making Tax Digital handled for you.', 'dandt-theme' ); ?></p>
+                <a class="dandt-service-card-link" href="<?php echo esc_url( home_url( '/services/vat-returns/' ) ); ?>">
+                    <?php esc_html_e( 'Explore service', 'dandt-theme' ); ?>
+                    <?php dandt_icon( 'chevron-right' ); ?>
+                </a>
             </article>
 
             <article class="dandt-service-card dandt-reveal">
                 <div class="dandt-service-icon"><?php dandt_icon( 'users' ); ?></div>
                 <h3 class="dandt-h3"><?php esc_html_e( 'Payroll', 'dandt-theme' ); ?></h3>
                 <p class="dandt-body"><?php esc_html_e( 'Your team paid accurately and on schedule, with PAYE and pension contributions sorted.', 'dandt-theme' ); ?></p>
+                <a class="dandt-service-card-link" href="<?php echo esc_url( home_url( '/services/payroll/' ) ); ?>">
+                    <?php esc_html_e( 'Explore service', 'dandt-theme' ); ?>
+                    <?php dandt_icon( 'chevron-right' ); ?>
+                </a>
             </article>
 
             <article class="dandt-service-card dandt-reveal">
                 <div class="dandt-service-icon"><?php dandt_icon( 'calculator' ); ?></div>
                 <h3 class="dandt-h3"><?php esc_html_e( 'Bookkeeping', 'dandt-theme' ); ?></h3>
                 <p class="dandt-body"><?php esc_html_e( 'Day-to-day records kept current, so year-end is a formality rather than a scramble.', 'dandt-theme' ); ?></p>
+                <a class="dandt-service-card-link" href="<?php echo esc_url( home_url( '/services/bookkeeping/' ) ); ?>">
+                    <?php esc_html_e( 'Explore service', 'dandt-theme' ); ?>
+                    <?php dandt_icon( 'chevron-right' ); ?>
+                </a>
             </article>
         </div>
     </div>
