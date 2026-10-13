@@ -45,7 +45,31 @@ document.addEventListener('DOMContentLoaded', () => {
     reveals.forEach(el => observer.observe(el));
 
     initPackageFinder();
+    initWhatsappFloat();
 });
+
+/**
+ * Sitewide floating WhatsApp button. Dismissal is remembered in
+ * localStorage (not sessionStorage) so a visitor who closes it on one page
+ * doesn't see it reappear on the next page, or on a later visit.
+ */
+function initWhatsappFloat() {
+    const widget = document.getElementById('dandt-wa-float');
+    const closeBtn = document.getElementById('dandt-wa-float-close');
+    if (!widget || !closeBtn) return;
+
+    const STORAGE_KEY = 'dandt-wa-dismissed';
+
+    if (localStorage.getItem(STORAGE_KEY) === '1') {
+        widget.classList.add('is-dismissed');
+        return;
+    }
+
+    closeBtn.addEventListener('click', () => {
+        widget.classList.add('is-dismissed');
+        localStorage.setItem(STORAGE_KEY, '1');
+    });
+}
 
 /**
  * Pricing page "find your package" tool. Pure routing, not a quote - there

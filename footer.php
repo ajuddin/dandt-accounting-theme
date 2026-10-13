@@ -50,6 +50,23 @@ $dandt = dandt_business_details();
     </div>
 </footer>
 
+<?php
+/*
+ * Sitewide floating WhatsApp button - fixed position so it's reachable from
+ * any page, dismissible (state kept in localStorage via main.js so a closed
+ * visitor doesn't see it pop back up on the next page load or visit).
+ */
+?>
+<div class="dandt-wa-float" id="dandt-wa-float">
+    <button type="button" class="dandt-wa-float-close" id="dandt-wa-float-close" aria-label="<?php esc_attr_e( 'Hide WhatsApp chat button', 'dandt-theme' ); ?>">
+        <?php dandt_icon( 'close', 'dandt-wa-float-close-icon' ); ?>
+    </button>
+    <a class="dandt-wa-float-btn" href="https://wa.me/<?php echo esc_attr( ltrim( $dandt['phone_href'], '+' ) ); ?>" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Chat with us on WhatsApp', 'dandt-theme' ); ?>">
+        <?php dandt_icon( 'whatsapp', 'dandt-wa-float-icon' ); ?>
+        <span class="dandt-wa-float-label"><?php esc_html_e( 'Chat on WhatsApp', 'dandt-theme' ); ?></span>
+    </a>
+</div>
+
 <?php wp_footer(); ?>
 </body>
 </html>
