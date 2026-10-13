@@ -110,11 +110,6 @@ $dandt = dandt_business_details();
                 <?php endforeach; ?>
             </ul>
 
-            <a class="dandt-nav-call" href="tel:<?php echo esc_attr( $dandt['phone_href'] ); ?>">
-                <?php dandt_icon( 'phone' ); ?>
-                <?php echo esc_html( $dandt['phone'] ); ?>
-            </a>
-
             <a class="dandt-btn dandt-btn-primary dandt-nav-contact" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">
                 <?php esc_html_e( 'Contact', 'dandt-theme' ); ?>
             </a>

@@ -52,18 +52,27 @@ $dandt = dandt_business_details();
 
 <?php
 /*
- * Sitewide floating WhatsApp button - fixed position so it's reachable from
- * any page, dismissible (state kept in localStorage via main.js so a closed
- * visitor doesn't see it pop back up on the next page load or visit).
+ * Sitewide floating contact bar - fixed at the bottom of every page so
+ * WhatsApp, the phone number and a consultation booking are all one tap
+ * away regardless of what page a visitor lands on. Dismissible (state
+ * kept in localStorage via main.js so a closed visitor doesn't see it pop
+ * back up on the next page load or visit).
  */
 ?>
-<div class="dandt-wa-float" id="dandt-wa-float">
-    <button type="button" class="dandt-wa-float-close" id="dandt-wa-float-close" aria-label="<?php esc_attr_e( 'Hide WhatsApp chat button', 'dandt-theme' ); ?>">
-        <?php dandt_icon( 'close', 'dandt-wa-float-close-icon' ); ?>
+<div class="dandt-contact-bar" id="dandt-contact-bar">
+    <button type="button" class="dandt-contact-bar-close" id="dandt-contact-bar-close" aria-label="<?php esc_attr_e( 'Hide this bar', 'dandt-theme' ); ?>">
+        <?php dandt_icon( 'close', 'dandt-contact-bar-close-icon' ); ?>
     </button>
-    <a class="dandt-wa-float-btn" href="https://wa.me/<?php echo esc_attr( ltrim( $dandt['phone_href'], '+' ) ); ?>" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Chat with us on WhatsApp', 'dandt-theme' ); ?>">
-        <?php dandt_icon( 'whatsapp', 'dandt-wa-float-icon' ); ?>
-        <span class="dandt-wa-float-label"><?php esc_html_e( 'Chat on WhatsApp', 'dandt-theme' ); ?></span>
+    <a class="dandt-contact-bar-whatsapp" href="https://wa.me/<?php echo esc_attr( ltrim( $dandt['phone_href'], '+' ) ); ?>" target="_blank" rel="noopener">
+        <?php dandt_icon( 'whatsapp', 'dandt-contact-bar-whatsapp-icon' ); ?>
+        <?php esc_html_e( 'Chat on WhatsApp', 'dandt-theme' ); ?>
+    </a>
+    <p class="dandt-contact-bar-call">
+        <?php esc_html_e( 'Call us now:', 'dandt-theme' ); ?>
+        <a href="tel:<?php echo esc_attr( $dandt['phone_href'] ); ?>"><?php echo esc_html( $dandt['phone'] ); ?></a>
+    </p>
+    <a class="dandt-btn dandt-btn-primary dandt-contact-bar-book" href="<?php echo esc_url( home_url( '/book-a-consultation/' ) ); ?>">
+        <?php esc_html_e( 'Book a Consultation', 'dandt-theme' ); ?>
     </a>
 </div>
 

@@ -45,20 +45,21 @@ document.addEventListener('DOMContentLoaded', () => {
     reveals.forEach(el => observer.observe(el));
 
     initPackageFinder();
-    initWhatsappFloat();
+    initContactBar();
 });
 
 /**
- * Sitewide floating WhatsApp button. Dismissal is remembered in
- * localStorage (not sessionStorage) so a visitor who closes it on one page
- * doesn't see it reappear on the next page, or on a later visit.
+ * Sitewide floating contact bar (WhatsApp / call / book a consultation).
+ * Dismissal is remembered in localStorage (not sessionStorage) so a
+ * visitor who closes it on one page doesn't see it reappear on the next
+ * page, or on a later visit.
  */
-function initWhatsappFloat() {
-    const widget = document.getElementById('dandt-wa-float');
-    const closeBtn = document.getElementById('dandt-wa-float-close');
+function initContactBar() {
+    const widget = document.getElementById('dandt-contact-bar');
+    const closeBtn = document.getElementById('dandt-contact-bar-close');
     if (!widget || !closeBtn) return;
 
-    const STORAGE_KEY = 'dandt-wa-dismissed';
+    const STORAGE_KEY = 'dandt-contact-bar-dismissed';
 
     if (localStorage.getItem(STORAGE_KEY) === '1') {
         widget.classList.add('is-dismissed');
