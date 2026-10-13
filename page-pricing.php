@@ -30,6 +30,11 @@ $factors = array(
         <h1 class="dandt-h1"><?php esc_html_e( 'Pricing', 'dandt-theme' ); ?></h1>
         <p class="dandt-lede"><?php esc_html_e( 'Every business is different, so we quote based on what your business actually needs rather than a one-size-fits-all price list.', 'dandt-theme' ); ?></p>
     </div>
+    <div class="dandt-container">
+        <div class="dandt-page-hero">
+            <?php dandt_hero_media( 'calculator', '/assets/images/pricing-hero.webp', __( 'Pricing', 'dandt-theme' ) ); ?>
+        </div>
+    </div>
 </section>
 
 <section class="dandt-section-tight">

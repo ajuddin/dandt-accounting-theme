@@ -21,7 +21,7 @@ get_header();
         <div class="dandt-hero-copy">
             <p class="dandt-hero-eyebrow"><?php esc_html_e( 'Your Partner in Progress', 'dandt-theme' ); ?></p>
             <h1 class="dandt-h1"><?php esc_html_e( 'Accounting support for businesses just getting started.', 'dandt-theme' ); ?></h1>
-            <p class="dandt-lede"><?php esc_html_e( 'Company accounts, VAT, payroll and bookkeeping for sole traders, startups and small businesses across Essex, handled by a chartered accountant who answers the phone.', 'dandt-theme' ); ?></p>
+            <p class="dandt-lede"><?php esc_html_e( 'Company accounts, VAT, payroll and bookkeeping for sole traders, startups and small businesses - based in Essex, working with clients across England, handled by a chartered accountant who answers the phone.', 'dandt-theme' ); ?></p>
             <div class="dandt-hero-ctas">
                 <a class="dandt-btn dandt-btn-primary" href="<?php echo esc_url( home_url( '/book-a-consultation/' ) ); ?>"><?php esc_html_e( 'Book a Consultation', 'dandt-theme' ); ?></a>
                 <a class="dandt-btn dandt-btn-outline" href="<?php echo esc_url( home_url( '/services/' ) ); ?>"><?php esc_html_e( 'View Our Services', 'dandt-theme' ); ?></a>
@@ -40,7 +40,7 @@ get_header();
 <div class="dandt-trust">
     <div class="dandt-container dandt-trust-row">
         <span class="dandt-trust-item"><?php dandt_icon( 'shield-check' ); ?><?php esc_html_e( 'Chartered Accountants', 'dandt-theme' ); ?></span>
-        <span class="dandt-trust-item"><?php dandt_icon( 'map-pin' ); ?><?php esc_html_e( 'Based in Chelmsford, Essex', 'dandt-theme' ); ?></span>
+        <span class="dandt-trust-item"><?php dandt_icon( 'map-pin' ); ?><?php esc_html_e( 'Chelmsford-based, UK-wide service', 'dandt-theme' ); ?></span>
         <span class="dandt-trust-item"><?php dandt_icon( 'phone' ); ?><?php esc_html_e( 'Direct access to your accountant', 'dandt-theme' ); ?></span>
         <span class="dandt-trust-item"><?php dandt_icon( 'clock' ); ?><?php esc_html_e( 'Monday to Friday, 9am - 5pm', 'dandt-theme' ); ?></span>
     </div>

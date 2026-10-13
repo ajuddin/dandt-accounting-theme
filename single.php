@@ -22,6 +22,17 @@ while ( have_posts() ) :
                 <?php echo esc_html( get_the_date() ); ?>
             </p>
         </div>
+        <div class="dandt-container">
+            <div class="dandt-page-hero">
+                <?php
+                dandt_hero_media(
+                    'calendar',
+                    '/assets/images/resources/' . get_post_field( 'post_name' ) . '.webp',
+                    get_the_title()
+                );
+                ?>
+            </div>
+        </div>
     </section>
 
     <section class="dandt-section-tight">

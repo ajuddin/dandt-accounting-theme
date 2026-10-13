@@ -1097,6 +1097,19 @@ h1, h2, h3, h4, p { margin: 0; }
     aspect-ratio: 4 / 3;
 }
 .dandt-service-hero-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Reusable wide banner hero for single-column pages (Resources articles, Pricing) -
+   same idea as .dandt-service-hero-media but full-width rather than split with copy. */
+.dandt-page-hero {
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    aspect-ratio: 21 / 9;
+    margin-top: 1.5rem;
+}
+.dandt-page-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 860px) {
+    .dandt-page-hero { aspect-ratio: 16 / 10; }
+}
 @media (max-width: 860px) {
     .dandt-service-hero { grid-template-columns: 1fr; }
     .dandt-service-hero-media { order: -1; aspect-ratio: 16 / 10; }

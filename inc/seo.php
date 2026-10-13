@@ -95,7 +95,7 @@ function dandt_service_schema( $post ) {
             'name'  => 'D&T Accounting',
             'url'   => home_url( '/' ),
         ),
-        'areaServed'  => 'Essex, UK',
+        'areaServed'  => array( 'Essex, UK', 'England, UK' ),
     );
 
     $faqs = dandt_extract_faqs( $post->post_content );

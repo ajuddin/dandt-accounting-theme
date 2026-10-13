@@ -17,7 +17,7 @@ $dandt = dandt_business_details();
             <div class="dandt-footer-col">
                 <h3><?php bloginfo( 'name' ); ?></h3>
                 <p class="dandt-footer-tagline"><?php esc_html_e( 'Your Partner in Progress', 'dandt-theme' ); ?></p>
-                <p><?php esc_html_e( 'Chartered accountancy services for businesses across Essex: company accounts, VAT, payroll, self-assessment and bookkeeping.', 'dandt-theme' ); ?></p>
+                <p><?php esc_html_e( 'Chartered accountancy services for businesses across Essex and clients throughout England: company accounts, VAT, payroll, self-assessment and bookkeeping.', 'dandt-theme' ); ?></p>
             </div>
 
             <div class="dandt-footer-col">

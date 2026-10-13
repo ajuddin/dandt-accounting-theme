@@ -37,7 +37,7 @@ $dandt = dandt_business_details();
             'addressRegion'   => 'Essex',
             'addressCountry'  => 'GB',
         ),
-        'areaServed'                => 'Essex, UK',
+        'areaServed'                => array( 'Essex, UK', 'England, UK' ),
         /* Derived directly from dandt_business_details()['hours'] - not a separate invented figure. */
         'openingHoursSpecification' => array(
             '@type'     => 'OpeningHoursSpecification',

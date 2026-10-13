@@ -21,7 +21,7 @@ get_header();
 <section class="dandt-section-tight">
     <div class="dandt-container dandt-section-head">
         <h1 class="dandt-h1"><?php esc_html_e( 'About D&T Accounting', 'dandt-theme' ); ?></h1>
-        <p class="dandt-lede"><?php esc_html_e( 'A chartered accountancy firm based in Chelmsford, working with businesses across Essex.', 'dandt-theme' ); ?></p>
+        <p class="dandt-lede"><?php esc_html_e( 'A chartered accountancy firm based in Chelmsford, Essex - working with businesses across England.', 'dandt-theme' ); ?></p>
     </div>
 </section>
 
