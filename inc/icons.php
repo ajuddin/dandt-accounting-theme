@@ -95,7 +95,7 @@ function dandt_brand_panel( $icon, $class = '' ) {
  */
 function dandt_hero_media( $icon, $photo_path, $alt = '', $class = '', $loading = 'lazy' ) {
     if ( $photo_path && file_exists( get_theme_file_path( $photo_path ) ) ) {
-        echo '<img src="' . esc_url( get_theme_file_uri( $photo_path ) ) . '" alt="' . esc_attr( $alt ) . '" loading="' . esc_attr( $loading ) . '" />';
+        echo '<img src="' . esc_url( get_theme_file_uri( $photo_path ) ) . '" alt="' . esc_attr( $alt ) . '" loading="' . esc_attr( $loading ) . '" class="' . esc_attr( $class ) . '" />';
         return;
     }
     dandt_brand_panel( $icon, $class );

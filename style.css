@@ -1178,30 +1178,32 @@ h1, h2, h3, h4, p { margin: 0; }
 }
 
 /* ==========================================================================
-   About page hero (copy left, two stacked photos right)
+   About page hero (copy left, two photos side by side right)
    ========================================================================== */
 
 .dandt-about-hero {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1fr 1fr;
     gap: 2.5rem;
     align-items: center;
 }
 .dandt-about-hero-copy > * + * { margin-top: 1rem; }
 .dandt-about-hero-media {
     display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
 }
 .dandt-about-hero-media img {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: var(--radius-card);
     display: block;
 }
+.dandt-about-hero-media-right { object-position: right center; }
 @media (max-width: 860px) {
     .dandt-about-hero { grid-template-columns: 1fr; }
-    .dandt-about-hero-media { order: -1; grid-template-columns: 1fr 1fr; }
+    .dandt-about-hero-media { order: -1; }
 }
 
 /* ==========================================================================

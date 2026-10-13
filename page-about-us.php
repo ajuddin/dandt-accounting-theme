@@ -40,7 +40,7 @@ get_header();
                 'briefcase',
                 '/assets/images/about-us-2.webp',
                 __( 'Stacked ring binders of client records', 'dandt-theme' ),
-                '',
+                'dandt-about-hero-media-right',
                 'eager'
             );
             ?>
