@@ -192,11 +192,82 @@ get_header();
     </div>
 </section>
 
+<?php
+$dandt_reviews = dandt_google_reviews();
+$dandt_rating  = dandt_google_rating_summary();
+?>
 <section class="dandt-section-tight">
     <div class="dandt-container">
-        <?php /* TODO: replace with a real client testimonial, with permission, once the firm has one to share. */ ?>
-        <div class="dandt-testimonial-placeholder dandt-reveal">
-            <p><?php esc_html_e( 'A client testimonial will go here once we have one to share.', 'dandt-theme' ); ?></p>
+        <div class="dandt-section-head dandt-reveal">
+            <p class="dandt-hero-eyebrow"><?php esc_html_e( 'Client Experiences', 'dandt-theme' ); ?></p>
+            <h2 class="dandt-h2"><?php esc_html_e( 'What Our Clients Say', 'dandt-theme' ); ?></h2>
+            <p class="dandt-body"><?php esc_html_e( 'Discover what our clients have to say about working with D&T Accounting.', 'dandt-theme' ); ?></p>
+        </div>
+
+        <?php if ( $dandt_rating ) : ?>
+            <div class="dandt-rating-summary dandt-reveal">
+                <?php dandt_google_g_icon( 'dandt-rating-summary-g' ); ?>
+                <div class="dandt-rating-summary-score">
+                    <span class="dandt-rating-summary-number"><?php echo esc_html( number_format_i18n( $dandt_rating['rating'], 1 ) ); ?></span>
+                    <?php dandt_render_stars( $dandt_rating['rating'] ); ?>
+                </div>
+                <p class="dandt-body">
+                    <?php
+                    echo esc_html(
+                        sprintf(
+                            /* translators: %d: number of Google reviews */
+                            _n( 'Based on %d Google review', 'Based on %d Google reviews', $dandt_rating['count'], 'dandt-theme' ),
+                            $dandt_rating['count']
+                        )
+                    );
+                    ?>
+                </p>
+                <a href="<?php echo esc_url( dandt_google_maps_url() ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Read all reviews on Google', 'dandt-theme' ); ?> &rarr;</a>
+            </div>
+        <?php endif; ?>
+
+        <?php if ( $dandt_reviews ) : ?>
+            <div class="dandt-testimonial-grid">
+                <?php foreach ( $dandt_reviews as $review ) :
+                    $initials = '';
+                    foreach ( preg_split( '/\s+/', trim( $review['name'] ) ) as $part ) {
+                        $initials .= mb_substr( $part, 0, 1 );
+                    }
+                    $initials = mb_substr( strtoupper( $initials ), 0, 2 );
+                    ?>
+                    <article class="dandt-testimonial-card dandt-reveal">
+                        <?php dandt_render_stars( $review['rating'] ); ?>
+                        <p class="dandt-body dandt-testimonial-text">&ldquo;<?php echo esc_html( $review['text'] ); ?>&rdquo;</p>
+                        <div class="dandt-testimonial-author">
+                            <span class="dandt-testimonial-avatar" aria-hidden="true"><?php echo esc_html( $initials ); ?></span>
+                            <div>
+                                <p class="dandt-testimonial-name"><?php echo esc_html( $review['name'] ); ?></p>
+                                <?php if ( ! empty( $review['date'] ) ) : ?>
+                                    <p class="dandt-testimonial-date"><?php echo esc_html( $review['date'] ); ?></p>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="dandt-testimonial-footer">
+                            <span class="dandt-testimonial-source"><?php dandt_google_g_icon( 'dandt-testimonial-g' ); ?> <?php esc_html_e( 'Posted on Google', 'dandt-theme' ); ?></span>
+                            <?php if ( ! empty( $review['url'] ) ) : ?>
+                                <a href="<?php echo esc_url( $review['url'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Read on Google', 'dandt-theme' ); ?> &rarr;</a>
+                            <?php endif; ?>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
+            </div>
+        <?php else : ?>
+            <div class="dandt-testimonial-placeholder dandt-reveal">
+                <?php dandt_google_g_icon( 'dandt-testimonial-placeholder-g' ); ?>
+                <p><?php esc_html_e( "We're setting up genuine Google Reviews here. In the meantime, you can read real client reviews directly on our Google Business Profile.", 'dandt-theme' ); ?></p>
+            </div>
+        <?php endif; ?>
+
+        <div class="dandt-testimonial-cta dandt-reveal">
+            <a class="dandt-btn dandt-btn-primary" href="<?php echo esc_url( dandt_google_maps_url() ); ?>" target="_blank" rel="noopener">
+                <?php esc_html_e( 'Read All Our Google Reviews', 'dandt-theme' ); ?>
+                <?php dandt_icon( 'chevron-right' ); ?>
+            </a>
         </div>
     </div>
 </section>

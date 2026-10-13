@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
  * after the header rework - four CSS-touching commits shipped after the
  * version was last bumped.)
  */
-define( 'DANDT_VERSION', '1.10.0' );
+define( 'DANDT_VERSION', '1.11.0' );
 
 /**
  * Theme setup: menus, image sizes, title-tag support.
@@ -128,3 +128,4 @@ require_once get_theme_file_path( '/inc/custom-post-types.php' );
 require_once get_theme_file_path( '/inc/block-patterns.php' );
 require_once get_theme_file_path( '/inc/seo.php' );
 require_once get_theme_file_path( '/inc/lets-chat.php' );
+require_once get_theme_file_path( '/inc/testimonials.php' );

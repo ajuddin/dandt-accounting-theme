@@ -1066,8 +1066,100 @@ h1, h2, h3, h4, p { margin: 0; }
     text-align: center;
     max-width: 56ch;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
 }
 .dandt-testimonial-placeholder p { color: var(--ink-soft); font-style: italic; }
+.dandt-testimonial-placeholder-g { width: 32px; height: 32px; opacity: 0.5; }
+
+/* ==========================================================================
+   Google Reviews rating summary + testimonial cards (homepage)
+   ========================================================================== */
+
+.dandt-rating-summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem 1.25rem;
+    text-align: center;
+    margin: 0 auto 2.5rem;
+    padding: 1.25rem 2rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    max-width: 640px;
+}
+.dandt-rating-summary-g { width: 26px; height: 26px; flex-shrink: 0; }
+.dandt-rating-summary-score { display: flex; align-items: center; gap: 0.5rem; }
+.dandt-rating-summary-number {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--ink);
+}
+.dandt-rating-summary a { color: var(--accent-ink); font-weight: 700; }
+
+.dandt-stars { display: inline-flex; gap: 2px; }
+.dandt-star { width: 18px; height: 18px; fill: var(--border); }
+.dandt-star.is-filled { fill: #f5a623; }
+
+.dandt-testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    align-items: stretch;
+}
+.dandt-testimonial-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 1.75rem;
+    min-height: 260px;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.dandt-testimonial-card:hover { box-shadow: var(--shadow-card); transform: translateY(-3px); }
+.dandt-testimonial-text { color: var(--ink-soft); flex: 1; }
+.dandt-testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+.dandt-testimonial-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--accent-ink);
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+.dandt-testimonial-name { font-weight: 700; color: var(--ink); }
+.dandt-testimonial-date { color: var(--ink-soft); font-size: 0.85rem; }
+.dandt-testimonial-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+}
+.dandt-testimonial-source { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--ink-soft); }
+.dandt-testimonial-g { width: 16px; height: 16px; flex-shrink: 0; }
+.dandt-testimonial-footer a { color: var(--accent-ink); font-weight: 700; }
+
+.dandt-testimonial-cta { text-align: center; margin-top: 2rem; }
+
+@media (max-width: 900px) {
+    .dandt-testimonial-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 620px) {
+    .dandt-testimonial-grid { grid-template-columns: 1fr; }
+}
 
 /* ==========================================================================
    Profile card (About page - accountant profile)
