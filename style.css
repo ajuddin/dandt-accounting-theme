@@ -974,6 +974,21 @@ h1, h2, h3, h4, p { margin: 0; }
 .dandt-profile-photo-icon { width: 34%; height: 34%; color: var(--border); stroke-width: 1.25; }
 .dandt-profile-copy > * + * { margin-top: 0.75rem; }
 .dandt-profile-role { color: var(--accent-ink); font-weight: 700; font-size: 0.9rem; }
+/* Text-based credential mark, used in place of the ACCA logo image until
+   the firm supplies the properly licensed logo asset from its member
+   portal - see the About page profile blocks. */
+.dandt-credential-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.15rem 0.55rem;
+    margin-right: 0.4rem;
+    border-radius: 999px;
+    background: var(--brand-blue);
+    color: var(--paper);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+}
 
 @media (max-width: 700px) {
     .dandt-profile { grid-template-columns: 1fr; }

@@ -4,11 +4,10 @@
  * template hierarchy - renamed from /about/ per the brief; see the 301 in
  * functions.php (dandt_legacy_redirects) for the old URL.
  *
- * The accountant profile below is a deliberate placeholder - real name,
- * role, bio and photo are still needed from the client (confirmed: to be
- * supplied later from a CV; this placeholder stays until then). Duplicate
- * the .dandt-profile block if there are two partners to feature ("D" and
- * "T") - the firm name suggests there may be.
+ * Two accountant profiles below, sourced from each person's CV (high-level
+ * experience only - not a full CV dump). Dalia's photo is still pending from
+ * the client, so her profile keeps the "is-pending" placeholder treatment
+ * used elsewhere on the site rather than a stock photo standing in for her.
  *
  * @package dandt-theme
  */
@@ -38,25 +37,43 @@ get_header();
 
 <section class="dandt-section-tight">
     <div class="dandt-container">
-        <?php /* TODO: real name, role, bio and photo. Duplicate this block for a second partner. */ ?>
         <div class="dandt-profile dandt-reveal">
+            <div class="dandt-profile-photo">
+                <img src="<?php echo esc_url( get_theme_file_uri( '/assets/images/team/tahmina-khatun.webp' ) ); ?>" alt="<?php esc_attr_e( 'Thamina Khatun', 'dandt-theme' ); ?>" loading="lazy">
+            </div>
+            <div class="dandt-profile-copy">
+                <p class="dandt-profile-role"><?php esc_html_e( 'Senior Accountant', 'dandt-theme' ); ?></p>
+                <h2 class="dandt-h2"><?php esc_html_e( 'Thamina Khatun', 'dandt-theme' ); ?></h2>
+                <p class="dandt-body"><?php esc_html_e( 'Thamina is a fully ACCA-qualified accountant with over a decade of experience across private practice and in-house finance roles, including senior finance positions at Kent County Council and the NHS. She has prepared statutory accounts for limited companies, partnerships and sole traders under FRS 102 and FRS 105, managed VAT returns and bookkeeping, and liaised directly with HMRC on clients\' behalf. She works comfortably across Sage, Xero, QuickBooks and IRIS, and is fluent in English, Bangla and Hindi.', 'dandt-theme' ); ?></p>
+                <p class="dandt-body">
+                    <span class="dandt-credential-badge"><?php esc_html_e( 'ACCA', 'dandt-theme' ); ?></span>
+                    <?php esc_html_e( 'Association of Chartered Certified Accountants - Fully Qualified, 2019', 'dandt-theme' ); ?>
+                </p>
+            </div>
+        </div>
+
+        <div class="dandt-profile dandt-reveal" style="margin-top: 2rem;">
             <?php
             /*
              * A stock photo of a stranger standing in for a specific named
              * person would be misleading, not just low-quality - this uses
              * the same honest "pending" treatment as the testimonial slot
              * instead (dashed border, muted icon) rather than the confident
-             * gradient brand panel used elsewhere on the site.
+             * gradient brand panel used elsewhere on the site. Photo to
+             * follow from the client.
              */
             ?>
             <div class="dandt-profile-photo is-pending">
                 <?php dandt_icon( 'user', 'dandt-profile-photo-icon' ); ?>
             </div>
             <div class="dandt-profile-copy">
-                <p class="dandt-profile-role"><?php esc_html_e( '[Role - e.g. Director, Chartered Accountant]', 'dandt-theme' ); ?></p>
-                <h2 class="dandt-h2">[<?php esc_html_e( 'Accountant Name', 'dandt-theme' ); ?>]</h2>
-                <p class="dandt-body"><?php esc_html_e( '[Bio to be added: background and the kind of clients they work with.]', 'dandt-theme' ); ?></p>
-                <p class="dandt-body"><strong><?php esc_html_e( 'Qualifications & memberships:', 'dandt-theme' ); ?></strong> <?php esc_html_e( '[to be confirmed - e.g. ACA/ACCA/AAT, professional body membership]', 'dandt-theme' ); ?></p>
+                <p class="dandt-profile-role"><?php esc_html_e( 'Senior Accountant', 'dandt-theme' ); ?></p>
+                <h2 class="dandt-h2"><?php esc_html_e( 'Dalia Hoque', 'dandt-theme' ); ?></h2>
+                <p class="dandt-body"><?php esc_html_e( 'Dalia is a fully ACCA-qualified accountant whose career spans private practice, corporate finance and banking. Most recently, as a Financial Controller, she managed monthly financial reporting, balance sheet reconciliations and VAT compliance. Earlier in her career she prepared year-end and management accounts, corporation and personal tax returns, and client bookkeeping at a firm of chartered accountants, building on experience gained in accounts payable and capital markets.', 'dandt-theme' ); ?></p>
+                <p class="dandt-body">
+                    <span class="dandt-credential-badge"><?php esc_html_e( 'ACCA', 'dandt-theme' ); ?></span>
+                    <?php esc_html_e( 'Association of Chartered Certified Accountants - Fully Qualified, 2016', 'dandt-theme' ); ?>
+                </p>
             </div>
         </div>
     </div>
