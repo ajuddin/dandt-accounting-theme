@@ -39,6 +39,14 @@ function dandt_expose_seo_meta_to_rest() {
                 return current_user_can( 'edit_posts' );
             },
         ) );
+        register_post_meta( $post_type, 'rank_math_focus_keyword', array(
+            'show_in_rest' => true,
+            'single'       => true,
+            'type'         => 'string',
+            'auth_callback' => function() {
+                return current_user_can( 'edit_posts' );
+            },
+        ) );
     }
 }
 add_action( 'init', 'dandt_expose_seo_meta_to_rest' );
