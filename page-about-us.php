@@ -16,20 +16,35 @@ get_header();
 ?>
 
 <section class="dandt-section-tight">
-    <div class="dandt-container dandt-section-head">
-        <h1 class="dandt-h1"><?php esc_html_e( 'About D&T Accounting', 'dandt-theme' ); ?></h1>
-        <p class="dandt-lede"><?php esc_html_e( 'A chartered accountancy firm based in Chelmsford, Essex - working with businesses across England.', 'dandt-theme' ); ?></p>
-    </div>
-</section>
-
-<section class="dandt-section-tight">
-    <div class="dandt-container">
-        <p class="dandt-body" style="max-width: 70ch;">
-            <?php esc_html_e( 'We provide accounting services built around how small and growing businesses actually operate: clear communication, deadlines that are tracked rather than chased, and advice in plain language rather than jargon.', 'dandt-theme' ); ?>
-        </p>
-        <p class="dandt-body" style="max-width: 70ch; margin-top: 1rem;">
-            <?php esc_html_e( 'We\'re a newer firm, and we think that\'s worth saying plainly rather than dressing up. It means every client gets direct attention rather than being passed down to whoever has capacity, and it means we\'re building our reputation on getting the basics right, not resting on one.', 'dandt-theme' ); ?>
-        </p>
+    <div class="dandt-container dandt-about-hero">
+        <div class="dandt-about-hero-copy">
+            <h1 class="dandt-h1"><?php esc_html_e( 'About D&T Accounting', 'dandt-theme' ); ?></h1>
+            <p class="dandt-lede"><?php esc_html_e( 'A chartered accountancy firm based in Chelmsford, Essex - working with businesses across England.', 'dandt-theme' ); ?></p>
+            <p class="dandt-body">
+                <?php esc_html_e( 'We provide accounting services built around how small and growing businesses actually operate: clear communication, deadlines that are tracked rather than chased, and advice in plain language rather than jargon.', 'dandt-theme' ); ?>
+            </p>
+            <p class="dandt-body">
+                <?php esc_html_e( 'We\'re a newer firm, and we think that\'s worth saying plainly rather than dressing up. It means every client gets direct attention rather than being passed down to whoever has capacity, and it means we\'re building our reputation on getting the basics right, not resting on one.', 'dandt-theme' ); ?>
+            </p>
+        </div>
+        <div class="dandt-about-hero-media">
+            <?php
+            dandt_hero_media(
+                'calculator',
+                '/assets/images/about-us-1.webp',
+                __( 'Calculator on a desk', 'dandt-theme' ),
+                '',
+                'eager'
+            );
+            dandt_hero_media(
+                'briefcase',
+                '/assets/images/about-us-2.webp',
+                __( 'Stacked ring binders of client records', 'dandt-theme' ),
+                '',
+                'eager'
+            );
+            ?>
+        </div>
     </div>
 </section>
 

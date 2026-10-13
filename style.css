@@ -1178,6 +1178,33 @@ h1, h2, h3, h4, p { margin: 0; }
 }
 
 /* ==========================================================================
+   About page hero (copy left, two stacked photos right)
+   ========================================================================== */
+
+.dandt-about-hero {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+.dandt-about-hero-copy > * + * { margin-top: 1rem; }
+.dandt-about-hero-media {
+    display: grid;
+    gap: 1rem;
+}
+.dandt-about-hero-media img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-card);
+    display: block;
+}
+@media (max-width: 860px) {
+    .dandt-about-hero { grid-template-columns: 1fr; }
+    .dandt-about-hero-media { order: -1; grid-template-columns: 1fr 1fr; }
+}
+
+/* ==========================================================================
    Profile card (About page - accountant profile)
    ========================================================================== */
 

@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
  * after the header rework - four CSS-touching commits shipped after the
  * version was last bumped.)
  */
-define( 'DANDT_VERSION', '1.13.0' );
+define( 'DANDT_VERSION', '1.14.0' );
 
 /**
  * Theme setup: menus, image sizes, title-tag support.
@@ -58,10 +58,7 @@ add_action( 'wp_enqueue_scripts', 'dandt_enqueue_assets' );
  * The firm's core contact details, used sitewide (header, footer, contact
  * page, structured data). Single source so they can never drift apart again
  * the way the old site's About and Contact pages disagreed on the address.
- *
- * NOTE: the address below is carried over from the live site's Contact page
- * as the more complete of the two addresses it showed. CONFIRM this before
- * launch and update here only.
+ * Confirmed correct by the client ahead of launch.
  *
  * @return array{phone:string,phone_href:string,email:string,address_lines:string[],hours:string}
  */
