@@ -881,6 +881,35 @@ h1, h2, h3, h4, p { margin: 0; }
 }
 .dandt-teaser-copy { flex: 1; min-width: 260px; }
 .dandt-teaser-copy > * + * { margin-top: 0.6rem; }
+
+/* ==========================================================================
+   "Let's Chat" contact-channels band (About + Contact pages)
+   ========================================================================== */
+
+.dandt-chat-band {
+    background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+    border-radius: var(--radius-card);
+    padding: 2.5rem;
+}
+.dandt-chat-band h2 { margin-top: 0.4rem; margin-bottom: 2rem; }
+.dandt-chat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+.dandt-chat-col > * + * { margin-top: 0.6rem; }
+.dandt-chat-col a { font-weight: 600; }
+.dandt-chat-icon { width: 28px; height: 28px; color: var(--ink); stroke-width: 1.75; }
+
+@media (max-width: 860px) {
+    .dandt-chat-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+    .dandt-chat-grid { grid-template-columns: 1fr; }
+    .dandt-chat-band { padding: 1.75rem; }
+}
+
 .dandt-teaser-eyebrow {
     font-weight: 700;
     font-size: 0.85rem;

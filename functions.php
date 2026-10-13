@@ -127,3 +127,4 @@ require_once get_theme_file_path( '/inc/icons.php' );
 require_once get_theme_file_path( '/inc/custom-post-types.php' );
 require_once get_theme_file_path( '/inc/block-patterns.php' );
 require_once get_theme_file_path( '/inc/seo.php' );
+require_once get_theme_file_path( '/inc/lets-chat.php' );

@@ -132,6 +132,8 @@ $status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['contact']
     </div>
 </section>
 
+<?php dandt_lets_chat_section(); ?>
+
 <?php
 /*
  * Deliberately a nudge, not a second Calendly embed: booking a consultation

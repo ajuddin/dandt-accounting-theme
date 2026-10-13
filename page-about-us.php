@@ -5,9 +5,7 @@
  * functions.php (dandt_legacy_redirects) for the old URL.
  *
  * Two accountant profiles below, sourced from each person's CV (high-level
- * experience only - not a full CV dump). Dalia's photo is still pending from
- * the client, so her profile keeps the "is-pending" placeholder treatment
- * used elsewhere on the site rather than a stock photo standing in for her.
+ * experience only - not a full CV dump).
  *
  * @package dandt-theme
  */
@@ -53,18 +51,8 @@ get_header();
         </div>
 
         <div class="dandt-profile dandt-reveal" style="margin-top: 2rem;">
-            <?php
-            /*
-             * A stock photo of a stranger standing in for a specific named
-             * person would be misleading, not just low-quality - this uses
-             * the same honest "pending" treatment as the testimonial slot
-             * instead (dashed border, muted icon) rather than the confident
-             * gradient brand panel used elsewhere on the site. Photo to
-             * follow from the client.
-             */
-            ?>
-            <div class="dandt-profile-photo is-pending">
-                <?php dandt_icon( 'user', 'dandt-profile-photo-icon' ); ?>
+            <div class="dandt-profile-photo">
+                <img src="<?php echo esc_url( get_theme_file_uri( '/assets/images/team/dalia-hoque.webp' ) ); ?>" alt="<?php esc_attr_e( 'Dalia Hoque', 'dandt-theme' ); ?>" loading="lazy">
             </div>
             <div class="dandt-profile-copy">
                 <p class="dandt-profile-role"><?php esc_html_e( 'Senior Accountant', 'dandt-theme' ); ?></p>
@@ -103,5 +91,7 @@ get_header();
         </div>
     </div>
 </section>
+
+<?php dandt_lets_chat_section(); ?>
 
 <?php get_footer(); ?>
