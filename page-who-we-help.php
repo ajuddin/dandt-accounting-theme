@@ -39,7 +39,13 @@ $audiences = get_posts( array(
                     ?>
                     <article class="dandt-service-card dandt-service-card--media<?php echo $is_featured ? ' dandt-service-card--featured' : ''; ?> dandt-reveal">
                         <div class="dandt-card-media <?php echo esc_attr( $grad_class ); ?>">
-                            <?php dandt_brand_panel( dandt_location_icon( $audience->post_name ) ); ?>
+                            <?php
+                            dandt_hero_media(
+                                dandt_location_icon( $audience->post_name ),
+                                '/assets/images/locations-hub/' . $audience->post_name . '.webp',
+                                get_the_title( $audience )
+                            );
+                            ?>
                         </div>
                         <div class="dandt-card-content">
                             <h2 class="dandt-h3"><a class="dandt-service-card-title" href="<?php echo esc_url( get_permalink( $audience ) ); ?>"><?php echo esc_html( get_the_title( $audience ) ); ?></a></h2>

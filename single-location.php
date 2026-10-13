@@ -29,7 +29,13 @@ while ( have_posts() ) :
                 </a>
             </div>
             <div class="dandt-service-hero-media">
-                <?php dandt_brand_panel( $hero_icon ); ?>
+                <?php
+                dandt_hero_media(
+                    $hero_icon,
+                    '/assets/images/locations/' . get_post_field( 'post_name' ) . '.webp',
+                    get_the_title()
+                );
+                ?>
             </div>
         </div>
     </section>

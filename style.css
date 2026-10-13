@@ -706,6 +706,7 @@ h1, h2, h3, h4, p { margin: 0; }
     flex-direction: column;
 }
 .dandt-service-card--media .dandt-card-media { aspect-ratio: 16 / 10; width: 100%; }
+.dandt-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .dandt-service-card--media .dandt-card-content {
     padding: 1.5rem 1.75rem 1.75rem;
     display: flex;

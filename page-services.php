@@ -64,7 +64,13 @@ $groups = get_terms( array(
                         ?>
                         <article class="dandt-service-card dandt-service-card--media<?php echo $is_featured ? ' dandt-service-card--featured' : ''; ?> dandt-reveal">
                             <div class="dandt-card-media <?php echo esc_attr( $grad_class ); ?>">
-                                <?php dandt_brand_panel( dandt_service_icon( $service->post_name ) ); ?>
+                                <?php
+                                dandt_hero_media(
+                                    dandt_service_icon( $service->post_name ),
+                                    '/assets/images/services-hub/' . $service->post_name . '.webp',
+                                    get_the_title( $service )
+                                );
+                                ?>
                             </div>
                             <div class="dandt-card-content">
                                 <h3 class="dandt-h3"><a class="dandt-service-card-title" href="<?php echo esc_url( get_permalink( $service ) ); ?>"><?php echo esc_html( get_the_title( $service ) ); ?></a></h3>
