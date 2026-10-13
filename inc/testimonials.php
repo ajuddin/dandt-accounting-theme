@@ -2,14 +2,15 @@
 /**
  * Google Reviews testimonials section (homepage) - genuine reviews only.
  *
- * No Google Places API key or review-management plugin is configured yet,
- * so dandt_google_reviews() stays empty and the section shows an honest
- * "pending" panel (same dashed-border treatment the old single-quote
- * placeholder used) with a working link straight to the firm's real Google
- * listing, rather than fabricated star ratings or quotes. Once reviews are
- * sourced - by pasting genuine quotes into the array below, or wiring up
- * the Places API - that's the only change needed for the real three-card
- * grid to render; nothing else in this file or front-page.php changes.
+ * No Google Places API key or review-management plugin is configured, so
+ * the three reviews below were supplied directly by the client (copied
+ * from their own Google Business Profile dashboard, star ratings
+ * confirmed separately since Google shows those as icons rather than
+ * text) rather than pulled from an API. dandt_google_rating_summary()
+ * still returns null - these 3 quotes aren't the full set behind the
+ * profile's overall rating/count, so that aggregate figure stays omitted
+ * until it's confirmed from the listing itself, rather than computed from
+ * only the reviews featured here.
  *
  * @package dandt-theme
  */
@@ -30,15 +31,38 @@ function dandt_google_maps_url() {
 }
 
 /**
- * Genuine Google reviews to feature, newest/best first - empty until real
- * reviews are sourced (see file header). Each entry: name, rating (1-5),
- * text, date (human string, e.g. "March 2026"), and optionally a url deep
- * link to that specific review on Google, if available.
+ * Genuine Google reviews to feature, newest first. Each entry: name,
+ * rating (1-5), text, date (human string - Google showed these as relative
+ * "N weeks/months ago" at the time they were supplied, converted to a
+ * month/year here since a relative string would silently go stale on a
+ * static page), and optionally meta (a short credibility line Google
+ * itself shows, e.g. "Local Guide") or url (deep link to that specific
+ * review, if available).
  *
- * @return array<int,array{name:string,rating:int,text:string,date?:string,url?:string}>
+ * @return array<int,array{name:string,rating:int,text:string,date?:string,meta?:string,url?:string}>
  */
 function dandt_google_reviews() {
-    return array();
+    return array(
+        array(
+            'name'   => 'Gaurish Ray',
+            'rating' => 5,
+            'meta'   => __( 'Local Guide · 21 reviews', 'dandt-theme' ),
+            'date'   => __( 'September 2026', 'dandt-theme' ),
+            'text'   => __( 'Outstanding, jargon-free financial support! As a small business owner, keeping on top of bookkeeping, VAT returns, and self-assessments used to be a major source of stress. Switching to D&T Accounting has completely transformed how I run my business. The team is incredibly responsive, efficient, and - most importantly - they explain everything in plain English without the confusing financial jargon. They don\'t just crunch the numbers; they actively look for ways to help my business grow and optimise my tax position. It brings immense peace of mind knowing my compliance and corporation tax are in such capable hands. If you are looking for a reliable, growth-focused accounting partner, I cannot recommend them highly enough!', 'dandt-theme' ),
+        ),
+        array(
+            'name'   => 'Anjela Rapley',
+            'rating' => 5,
+            'date'   => __( 'September 2026', 'dandt-theme' ),
+            'text'   => __( 'I had a great experience with D&T Accounting. They were very professional, friendly and took the time to explain everything clearly and simply. They made the whole accounting and tax process much less stressful and were always happy to answer my questions. I would highly recommend D&T Accounting to anyone looking for a reliable, knowledgeable and approachable accountant. Thank you, Dalia and Thamina, for your excellent support!', 'dandt-theme' ),
+        ),
+        array(
+            'name'   => 'Zsolt Cseri',
+            'rating' => 5,
+            'date'   => __( 'March 2026', 'dandt-theme' ),
+            'text'   => __( 'D&T Accounting in Chelmsford have been an excellent support to my business from day one. They are professional, approachable and always quick to respond to questions, making everything from bookkeeping to tax returns straightforward and stress-free. Their advice is clear, practical and tailored to my needs, and I really value how they take the time to explain things properly so I can make informed decisions. I would happily recommend D&T Accounting Chelmsford to any small business owner looking for a reliable and trustworthy accountant.', 'dandt-theme' ),
+        ),
+    );
 }
 
 /**

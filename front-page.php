@@ -242,8 +242,17 @@ $dandt_rating  = dandt_google_rating_summary();
                             <span class="dandt-testimonial-avatar" aria-hidden="true"><?php echo esc_html( $initials ); ?></span>
                             <div>
                                 <p class="dandt-testimonial-name"><?php echo esc_html( $review['name'] ); ?></p>
-                                <?php if ( ! empty( $review['date'] ) ) : ?>
-                                    <p class="dandt-testimonial-date"><?php echo esc_html( $review['date'] ); ?></p>
+                                <?php if ( ! empty( $review['meta'] ) || ! empty( $review['date'] ) ) : ?>
+                                    <p class="dandt-testimonial-date">
+                                        <?php
+                                        echo esc_html(
+                                            implode(
+                                                ' · ',
+                                                array_filter( array( $review['meta'] ?? '', $review['date'] ?? '' ) )
+                                            )
+                                        );
+                                        ?>
+                                    </p>
                                 <?php endif; ?>
                             </div>
                         </div>

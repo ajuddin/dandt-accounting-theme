@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
  * after the header rework - four CSS-touching commits shipped after the
  * version was last bumped.)
  */
-define( 'DANDT_VERSION', '1.11.0' );
+define( 'DANDT_VERSION', '1.12.0' );
 
 /**
  * Theme setup: menus, image sizes, title-tag support.
