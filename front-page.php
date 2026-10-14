@@ -28,6 +28,8 @@ get_header();
         <div class="dandt-hero-media">
             <img
                 src="<?php echo esc_url( get_theme_file_uri( '/assets/images/home-hero.webp' ) ); ?>"
+                srcset="<?php echo esc_url( get_theme_file_uri( '/assets/images/home-hero-640.webp' ) ); ?> 640w, <?php echo esc_url( get_theme_file_uri( '/assets/images/home-hero.webp' ) ); ?> 1000w"
+                sizes="(max-width: 900px) 100vw, 500px"
                 alt="<?php esc_attr_e( 'Working on a laptop at a tidy desk with a notebook and coffee', 'dandt-theme' ); ?>"
                 width="1000" height="1250" loading="eager" fetchpriority="high" data-no-lazy="1" class="skip-lazy"
             >
