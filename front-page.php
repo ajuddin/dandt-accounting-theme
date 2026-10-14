@@ -2,11 +2,9 @@
 /**
  * Home page.
  *
- * Testimonials: a placeholder slot, not an omission - the brief specifically
- * wants one marked as pending rather than left out, unlike the previous
- * site's unedited "John Smith" template quote, which is why this used to be
- * dropped instead. Styled with a dashed border so it reads as unfinished,
- * not as a real quote.
+ * Testimonials: genuine Google reviews, sourced and rendered via
+ * inc/testimonials.php (falls back to an honest "pending" panel if that
+ * file's review list is ever emptied out again).
  *
  * @package dandt-theme
  */
@@ -31,7 +29,7 @@ get_header();
             <img
                 src="<?php echo esc_url( get_theme_file_uri( '/assets/images/home-hero.webp' ) ); ?>"
                 alt="<?php esc_attr_e( 'Working on a laptop at a tidy desk with a notebook and coffee', 'dandt-theme' ); ?>"
-                width="1000" height="1250" loading="eager"
+                width="1000" height="1250" loading="eager" fetchpriority="high" data-no-lazy="1" class="skip-lazy"
             >
         </div>
     </div>

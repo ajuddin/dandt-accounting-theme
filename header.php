@@ -17,6 +17,22 @@ $dandt = dandt_business_details();
 
     <?php
     /*
+     * Font preloads: without these, the browser only discovers the Lato
+     * woff2 files after downloading and parsing style.css - an extra
+     * round-trip PageSpeed flags as part of the critical request chain.
+     * Preloading lets the browser fetch them in parallel with the CSS
+     * instead of waiting for it.
+     */
+    foreach ( array( '400', '700', '900' ) as $weight ) {
+        printf(
+            '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n",
+            esc_url( get_theme_file_uri( "/assets/fonts/lato-{$weight}.woff2" ) )
+        );
+    }
+    ?>
+
+    <?php
+    /*
      * LocalBusiness structured data. Fills Google's knowledge panel with
      * accurate name/address/phone/hours - the single biggest local-SEO gap
      * found when auditing the previous site (it had no structured data at
